@@ -1,14 +1,14 @@
 {
-  "name": "fitness-tracker",
+  "name": "fitness-trac.kr",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Joe Garrett",
+  "contributors": ["Joe Garrett", "Gabriel Guild", "Kevin Moore", "Marcus Ortega"],
   "license": "ISC",
   "dependencies": {
     "react": "^17.0.2",
