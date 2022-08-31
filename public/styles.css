@@ -1,18 +1,30 @@
 .navlink {
     margin-right: 2rem;
-    color: white;
+    color: rgb(255, 255, 255);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16pt;
     text-decoration-line: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: black;
 }
 
 nav {
     margin-bottom: 1rem;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    border-bottom: 4px solid rgb(235, 7, 7);
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    left: 0%;
+    padding: .5rem;
+    filter: drop-shadow(1px 1px 1px rgb(59, 59, 59));
+
 }
 
 .navlink.active {
-    color: rgb(0, 0, 0);
+    color: rgb(235, 7, 7);
     font-weight: bolder;
 
 }
@@ -21,14 +33,12 @@ nav {
     color: white;
     font-weight: bolder;
 }
-.navbar {
-    background-color: rgba(27, 27, 155, 0.952);
+#app{
+    margin-top: 4rem;
     display: flex;
-    border: 1px solid black;
-    position: fixed;
-    top: 0%;
-    right: 0%;
-    left: 0%;
-    padding: .5rem;
-    filter: drop-shadow(1px 1px 1px rgb(59, 59, 59));
+}
+body{
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
