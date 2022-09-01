@@ -32,3 +32,9 @@ const setToken = (body, token) => {
   if (token) { body.headers = Object.assign(body.headers, { 'Authorization': `Bearer ${token}` }) }
   return body;
 }
+
+export const fetchRoutines = async() => {
+  const data = await apiCall('/routines', "GET", null)
+  console.log("data here:", data)
+  return data || []
+}

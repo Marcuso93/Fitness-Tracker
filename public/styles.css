@@ -33,6 +33,9 @@ nav {
     filter: drop-shadow(1px 1px 1px rgb(59, 59, 59));
 }
 
+.routineInfo {
+    color: black;
+
 .logout-popup {
     position: fixed;
     top: 50%;
