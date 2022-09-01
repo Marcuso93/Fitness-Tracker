@@ -35,4 +35,14 @@ nav {
 
 .routineInfo {
     color: black;
+
+.logout-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* TODO: Add more style / change styles for logout-popup */
+    background-color: lightgrey;
+    padding: 50px;
+    border: 1px gray solid;
 }

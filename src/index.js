@@ -1,8 +1,7 @@
 import { React, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavLink, BrowserRouter, Route } from "react-router-dom";
-import { Account, Activities, Home, MyRoutines, PublicRoutines } from './components/index';
-
+import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout } from './components/index';
 
 //-Uregistered:
   //see a Sign Up/Sign In form
@@ -27,15 +26,17 @@ import { Account, Activities, Home, MyRoutines, PublicRoutines } from './compone
   //On Activities tab
     //show form to create new activity (name and description)
     //show error if already exists
+    
 const App = () => {
 
 
   // Set useStates
-  const [User, setUser] = useState(false);
+  const [user, setUser] = useState(false);
   const [token, setToken] = useState('');
-  const [UserData, setUserData] = useState(false);
   const [routines, setRoutines] = useState([]);
   const [detailRoutines, setDetailRoutines]= useState([]);
+  const [loggingOut, setLoggingOut] = useState(false);
+  const [UserData, setUserData] = useState(false);  // what's the difference between userData and user?
 
   return (
     <main>
@@ -49,18 +50,40 @@ const App = () => {
           <NavLink to="/public-routines" className="navlink" activeClassName="active">
             Public Routines
           </NavLink>
-
-          <NavLink to="/my-routines" className="navlink" activeClassName="active">
-            My Routines
-          </NavLink>
+          
+          {
+            (token && user) ?
+            <>
+              <NavLink to="/my-routines" className="navlink" activeClassName="active">
+                My Routines
+              </NavLink>
+            </> :
+            null
+          }
 
           <NavLink to="/activities" className="navlink" activeClassName="active">
             Activities
           </NavLink>
 
           <NavLink to="/account" className="navlink" activeClassName="active">
-            Login/Register
+            {(token && user) ? 'My Account' : 'Login/Register'}
           </NavLink>
+
+          {/* TODO: Create Logout Component for popup */}
+          {/* TODO: Fix styling so this matches Navlinks and doesn't look like button */}
+          {
+            (token && user) ?
+            <input 
+              type='button'
+              value='Logout' 
+              className="navlink" 
+              onClick={(event) => {
+                event.preventDefault();
+                setLoggingOut(true);
+              }}
+            /> :
+            null 
+          }
           
       </nav>
 
@@ -99,8 +122,11 @@ const App = () => {
       </Route>
 
       <Route path="/account">
-        <Account />
+        <Account token={token} setToken={setToken} user={user} setUser={setUser} />
       </Route>
+
+      <Logout loggingOut={loggingOut} setLoggingOut={setLoggingOut} setUser={setUser} setToken={setToken} />
+    
     </main>
   )
 }
