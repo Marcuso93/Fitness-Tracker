@@ -29,10 +29,10 @@ import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout } from '.
     
 const App = () => {
 
-
   // Set useStates
   const [user, setUser] = useState(false);
   const [token, setToken] = useState('');
+  const [activities, setActivities]= useState([]);
   const [routines, setRoutines] = useState([]);
   const [detailRoutines, setDetailRoutines]= useState([]);
   const [loggingOut, setLoggingOut] = useState(false);
@@ -69,7 +69,6 @@ const App = () => {
             {(token && user) ? 'My Account' : 'Login/Register'}
           </NavLink>
 
-          {/* TODO: Create Logout Component for popup */}
           {/* TODO: Fix styling so this matches Navlinks and doesn't look like button */}
           {
             (token && user) ?
@@ -118,7 +117,10 @@ const App = () => {
         <Route path="/activities/:activityId">
 
         </Route>
-        <Activities />
+        <Activities 
+          activities={activities} 
+          setActivities={setActivities}
+        />
       </Route>
 
       <Route path="/account">

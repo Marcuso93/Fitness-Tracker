@@ -33,6 +33,12 @@ const setToken = (body, token) => {
   return body;
 }
 
+export const fetchActivities = async() => {
+  const data = await apiCall('/activities', "GET", null)
+  console.log("data here:", data)
+  return data || []
+}
+
 export const fetchRoutines = async() => {
   const data = await apiCall('/routines', "GET", null)
   console.log("data here:", data)
