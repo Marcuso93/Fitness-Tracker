@@ -9,6 +9,7 @@ const App = () => {
   const [User, setUser] = useState(false);
   const [token, setToken] = useState('');
   const [UserData, setUserData] = useState(false);
+  const [activities, setActivities]= useState([]);
 
   return (
     <main>
@@ -63,7 +64,10 @@ const App = () => {
         <Route path="/activities/:activityId">
 
         </Route>
-        <Activities />
+        <Activities 
+          activities={activities} 
+          setActivities={setActivities}
+        />
       </Route>
 
       <Route path="/account">
