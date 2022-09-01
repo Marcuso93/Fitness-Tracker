@@ -1,4 +1,7 @@
-export const BASE_URL = 'https://pacific-falls-66418.herokuapp.com/api/'
+// export const BASE_URL = 'https://pacific-falls-66418.herokuapp.com/api/'
+
+// TODO: there was some issue with our API (500 Internal Service Error)
+export const BASE_URL = 'http://fitnesstrac-kr.herokuapp.com/api/'
 
 export const apiCall = async (url, method = 'GET', token, body) => {
   let data = false;
@@ -36,4 +39,8 @@ export const fetchActivities = async() => {
   return data || []
 }
 
-
+export const fetchRoutines = async() => {
+  const data = await apiCall('/routines', "GET", null)
+  console.log("data here:", data)
+  return data || []
+}
