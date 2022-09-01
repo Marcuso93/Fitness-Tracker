@@ -19,7 +19,7 @@ const Activities = ({activities, setActivities}) => {
         {
             activities.map((activity) => {
                 //console.log("activities:",routine.activities)
-                return <div onClick={(e) => { handleRoutineClick(e, activity) }} key={activity.id}>                    
+                return <div key={activity.id}>                    
                     <div>{activity.name}</div>
                                  
                 </div>
