@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { fetchRoutines } from "../utilities/api";
-import { useHistory } from "react-router-dom"
+
 
 
 const PublicRoutines = ({routines, setRoutines, setDetailedRoutine}) => {
-    
+    // TODO: figure out useHistory (is going to /undefined)
     const history = useHistory();
 
     const handleRoutineClick = (e, routine) => {
         setDetailedRoutine(routine)
-        history.push(`/public-routines/${routines.id}`)
+        history.push(`/public-routines/${routine.id}`)
     }
 
     useEffect(() => {
@@ -29,7 +30,7 @@ const PublicRoutines = ({routines, setRoutines, setDetailedRoutine}) => {
         {
             routines.map((routine) => {
                 console.log("activities:",routine.activities)
-                return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id}>                    
+                return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id} className="routine-body">                    
                     <div>Name: {routine.name}</div>
                     <div>Goal: {routine.goal}</div>
                     <div>Creator: {routine.creatorName}</div>                            
