@@ -29,14 +29,6 @@ nav{
     color: white;
     font-weight: bolder;
 }
-.navlink {
-    margin-right: 2rem;
-    color: black;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 16pt;
-    text-decoration-line: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 .logout-popup {
     position: fixed;
     top: 50%;
