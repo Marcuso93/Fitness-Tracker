@@ -49,6 +49,7 @@ const Account = ({ token, setToken, user, setUser }) => {
     setUsername('');
     setPassword('');
     setConfirmPassword('');
+    setIsRegistered(true);
   }
 
   return (
