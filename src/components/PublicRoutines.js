@@ -21,6 +21,7 @@ const PublicRoutines = ({routines, setRoutines, detailRoutines, setDetailRoutine
     }, [])
 
     return <>
+    <div className="text-forground">
     <h1>PublicRoutines</h1>
 
     <div>
@@ -34,6 +35,7 @@ const PublicRoutines = ({routines, setRoutines, detailRoutines, setDetailRoutine
                 </div>
                 })
             } 
+        </div>
         </div>
     </>
     }
