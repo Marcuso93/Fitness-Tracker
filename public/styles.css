@@ -40,6 +40,10 @@ nav{
     border: 1px gray solid;
 }
 
+.routine-body:hover{
+    background-color: lightgray;
+}
+
 .detailedRoutines{
     position: fixed;
     background-color: rgb(25, 165, 208);

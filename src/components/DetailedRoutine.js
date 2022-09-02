@@ -12,9 +12,7 @@ const DetailedRoutine  = ({ detailedRoutine, setDetailedRoutine }) => {
     return <div key={detailedRoutine.id} className="detailedRoutines">                    
                 <h3>Routine</h3>
                 <div>Name: {detailedRoutine.name}</div>
-                <div>Goal: {detailedRoutine.goal}</div>
-                {/* map over detailedRoutine.activities (to get activities with description/duration/count etc.) */}
-                
+                <div>Goal: {detailedRoutine.goal}</div>                
             { detailedRoutine.activities.map((activity) => {
                 return <div key={activity.id}>
                     <h3>Title: {activity.name}</h3>
@@ -24,6 +22,7 @@ const DetailedRoutine  = ({ detailedRoutine, setDetailedRoutine }) => {
                 </div>
             }) 
             }
+            <button onClick={handleClose}>Close</button>
             </div>            
         } 
 
