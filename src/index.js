@@ -36,7 +36,6 @@ const App = () => {
   const [routines, setRoutines] = useState([]);
   const [detailRoutines, setDetailRoutines]= useState([]);
   const [loggingOut, setLoggingOut] = useState(false);
-  const [UserData, setUserData] = useState(false);  // what's the difference between userData and user?
 
   return (
     <main>
@@ -90,7 +89,7 @@ const App = () => {
       
       <Route exact path='/'>
         {/* to account page to login/register maybe */}
-        <Account />
+        <Account token={token} setToken={setToken} user={user} setUser={setUser} />
       </Route>
 
       <Route path="/home">
