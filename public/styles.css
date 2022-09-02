@@ -1,49 +1,40 @@
 .navlink {
     margin-right: 2rem;
+    color: rgb(255, 255, 255);
     color: black;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16pt;
     text-decoration-line: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: black;
 }
-
-nav {
+nav{
     margin-bottom: 1rem;
-}
-
-.navlink.active {
-    color: rgb(0, 0, 0);
-    font-weight: bolder;
-
-}
-
-.navlink.hover {
-    color: white;
-    font-weight: bolder;
-}
-.navbar {
-    background-color: rgba(27, 27, 155, 0.952);
+    background-color: black;
     display: flex;
-    border: 1px solid black;
+    justify-content: center;
+    border-bottom: 4px solid rgb(235, 7, 7);
     position: fixed;
     top: 0%;
     right: 0%;
     left: 0%;
     padding: .5rem;
     filter: drop-shadow(1px 1px 1px rgb(59, 59, 59));
-}
 
-.routineInfo {
-    color: black;
 }
-
-.logout-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* TODO: Add more style / change styles for logout-popup */
-    background-color: lightgrey;
-    padding: 50px;
-    border: 1px gray solid;
+.navlink.active {
+    color: rgb(235, 7, 7);
+    font-weight: bolder;
+}
+.navlink.hover {
+    color: white;
+    font-weight: bolder;
+}
+#app{
+    margin-top: 4rem;
+    display: flex;
+}
+body{
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
