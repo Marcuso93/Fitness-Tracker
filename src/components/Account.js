@@ -54,7 +54,8 @@ const Account = ({ token, setToken, user, setUser }) => {
 
   return (
     <>
-      <h1>Account</h1>
+    <div className='login'>
+      <h1 className='account'>Account</h1>
       {
         (user && token) ?
         <>
@@ -64,7 +65,7 @@ const Account = ({ token, setToken, user, setUser }) => {
           <p>Add whatever information/instructions we want.</p>
         </> :
         <>
-          <form onSubmit={ handleSubmit } >
+          <form className = 'login-form'onSubmit={ handleSubmit } >
             <h3>{ isRegistered ? "Login" : "Register"}</h3>
             <div>
               <div>Username:</div>
@@ -114,7 +115,6 @@ const Account = ({ token, setToken, user, setUser }) => {
               isRegistered ?
               <>
                 <p>New to Fitness Trackr?</p>
-                <p>Register a new account.</p>
                 <button 
                   type='submit'
                   onClick={(event) => {
@@ -136,6 +136,7 @@ const Account = ({ token, setToken, user, setUser }) => {
           </form>
         </>
       }
+    </div>
     </>
   )
 }

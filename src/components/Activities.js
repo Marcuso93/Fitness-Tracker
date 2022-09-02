@@ -13,6 +13,7 @@ const Activities = ({activities, setActivities}) => {
     }, [])
 
     return <>
+    <div className="text-forground">
     <h1>Publicactivity</h1>
 
     <div>
@@ -25,6 +26,7 @@ const Activities = ({activities, setActivities}) => {
                 </div>
                 })
             } 
+        </div>
         </div>
     </>
     }

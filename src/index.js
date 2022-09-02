@@ -136,6 +136,7 @@ const App = () => {
 
       <Logout loggingOut={loggingOut} setLoggingOut={setLoggingOut} setUser={setUser} setToken={setToken} />
     
+      {/* <img src = "./pictures/mainWorkoutBackground.jpg"/> */}
     </main>
   )
 }
