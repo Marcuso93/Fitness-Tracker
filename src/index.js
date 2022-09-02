@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavLink, BrowserRouter, Route } from "react-router-dom";
-import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout } from './components/index';
+import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine } from './components/index';
 
 //-Uregistered:
   //see a Sign Up/Sign In form
@@ -34,7 +34,7 @@ const App = () => {
   const [token, setToken] = useState('');
   const [activities, setActivities]= useState([]);
   const [routines, setRoutines] = useState([]);
-  const [detailRoutines, setDetailRoutines]= useState([]);
+  const [detailedRoutine, setDetailedRoutine]= useState([]);
   const [loggingOut, setLoggingOut] = useState(false);
 
   return (
@@ -97,15 +97,23 @@ const App = () => {
       </Route>
 
       <Route path="/public-routines">
-        <Route path= "/routines/:routineId">
+        <Route path= "/public-routines/:routineId">
+          <DetailedRoutine
+            detailedRoutine={detailedRoutine}
+            setDetailedRoutine={setDetailedRoutine}            
+          />
           
         </Route>
         <PublicRoutines 
           routines={routines} 
           setRoutines={setRoutines}
-          detailRoutines={detailRoutines} 
-          setDetailRoutines={setDetailRoutines}
+          detailedRoutine={detailedRoutine} 
+          setDetailedRoutine={setDetailedRoutine}
         />
+        {/* <DetailedRoutines
+          detailedRoutines={detailedRoutines}
+          setDetailededRoutines={setDetailedRoutines}
+        /> */}
       </Route>
 
       <Route path="/my-routines">

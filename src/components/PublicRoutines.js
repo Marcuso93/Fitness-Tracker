@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
 import { fetchRoutines } from "../utilities/api";
+import { useHistory } from "react-router-dom"
 
 
-const PublicRoutines = ({routines, setRoutines, detailRoutines, setDetailRoutines}) => {
+const PublicRoutines = ({routines, setRoutines, setDetailedRoutine}) => {
     
     const history = useHistory();
 
-    // const handleRoutineClick = (e, routine) => {
-    //     setDetailRoutines(routines)
-    // }
+    const handleRoutineClick = (e, routine) => {
+        setDetailedRoutine(routine)
+        history.push(`/public-routines/${routines.id}`)
+    }
 
     useEffect(() => {
         (async () => {
@@ -26,7 +27,7 @@ const PublicRoutines = ({routines, setRoutines, detailRoutines, setDetailRoutine
     <div>
         {
             routines.map((routine) => {
-                //console.log("activities:",routine.activities)
+                console.log("activities:",routine.activities)
                 return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id}>                    
                     <div>Name: {routine.name}</div>
                     <div>Goal: {routine.goal}</div>
