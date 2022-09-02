@@ -24,7 +24,6 @@ nav{
 .navlink.active {
     color: rgb(235, 7, 7);
     font-weight: bolder;
-
 }
 .navlink.hover {
     color: white;
