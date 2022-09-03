@@ -16,9 +16,8 @@ import { useHistory } from "react-router-dom";
     //     be able to remove any activity from the routine
 
 
-const MyRoutines = ({ user, token, setMyDetailedRoutine}) => {
+const MyRoutines = ({ user, token, setMyDetailedRoutine, myRoutines, setMyRoutines}) => {
   const [isCreatingRoutine, setIsCreatingRoutine] = useState(false);
-  const [myRoutines, setMyRoutines] = useState([]);
   const history = useHistory();
 
   const handleRoutineClick = (e, routine) => {
@@ -32,20 +31,10 @@ const MyRoutines = ({ user, token, setMyDetailedRoutine}) => {
         setMyRoutines(getMyRoutines);
     })()
     }, [])
-    
-  // useEffect(() => {
-  //   const getMyRoutines = async () => {
-  //     const routines = await fetchMyRoutines(user);
-  //     setMyRoutines(routines);
-  //   }
-  //   getMyRoutines();
-  // }, [])
-
 
   return (
     <div className="text-forground">
       <h1>My Routines</h1>
-      {/* display myRoutines from state */}
       {
         (user && token) ?
         <>
@@ -56,15 +45,17 @@ const MyRoutines = ({ user, token, setMyDetailedRoutine}) => {
               setIsCreatingRoutine(true);
           }}>Create New Routine</button>
           
-          {/* map over myRoutines */}
           <h3>My Routines</h3>
-          {myRoutines.map((routine) => {
-            return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id} className="myRoutine">
-              <div>Name: {routine.name}</div>
-              <div>Goal: {routine.goal}</div>
-            </div>
-          })}
-          
+          {
+            (myRoutines.length > 0) ?
+            myRoutines.map((routine) => {
+              return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id} className="myRoutine">
+                <div>Name: {routine.name}</div>
+                <div>Goal: {routine.goal}</div>
+              </div>
+            }) :
+            null
+          }
           {
             isCreatingRoutine ?
             <CreateRoutine isCreatingRoutine={isCreatingRoutine} setIsCreatingRoutine={setIsCreatingRoutine} user={user} token={token} myRoutines={myRoutines} setMyRoutines={setMyRoutines}/> :
