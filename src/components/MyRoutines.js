@@ -16,9 +16,9 @@ import { useHistory } from "react-router-dom";
     //     be able to remove any activity from the routine
 
 
-const MyRoutines = ({ user, token, setMyDetailedRoutine }) => {
+const MyRoutines = ({ user, token, setMyDetailedRoutine}) => {
   const [isCreatingRoutine, setIsCreatingRoutine] = useState(false);
-  const [myRoutines, setMyRoutines] = useState([]);   // USE THIS TO SET myRoutines to display
+  const [myRoutines, setMyRoutines] = useState([]);
   const history = useHistory();
 
   const handleRoutineClick = (e, routine) => {
@@ -29,9 +29,17 @@ const MyRoutines = ({ user, token, setMyDetailedRoutine }) => {
   useEffect(() => {
     (async () => {
         const getMyRoutines = await fetchMyRoutines(user);
-        setMyRoutines(getMyRoutines)
+        setMyRoutines(getMyRoutines);
     })()
     }, [])
+    
+  // useEffect(() => {
+  //   const getMyRoutines = async () => {
+  //     const routines = await fetchMyRoutines(user);
+  //     setMyRoutines(routines);
+  //   }
+  //   getMyRoutines();
+  // }, [])
 
 
   return (

@@ -18,11 +18,7 @@ const CreateActivity = ({ isCreatingActivity, setIsCreatingActivity, user, token
     // console.log('createdActivity', createdActivity);
     
     if (createdActivity.error) {
-      if (createdActivity.error) {
-        alert(`${createdActivity.message}`);
-      } else {
-        alert('There was an error in creating your new activity.')
-      }
+      alert(`${createdActivity.message}`);
     } else if (createdActivity.id) {
       setActivities([createdActivity, ...activities]);
       resetState();

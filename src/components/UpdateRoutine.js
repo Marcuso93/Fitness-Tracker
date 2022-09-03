@@ -2,32 +2,39 @@ import React from 'react'
 import { useState } from 'react'
 import { apiCall } from '../utilities/api'
 
-const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, myRoutines, setMyRoutines }) => {
-  const [name, setName] = useState('');
-  const [goal, setGoal] = useState('');
+const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDetailedRoutine }) => {
+  const [name, setName] = useState(updateRoutine.name);
+  const [goal, setGoal] = useState(updateRoutine.goal);
 
   const handleSubmit = async () => {
-    // console.log('POST to apiCall', { name, goal })
-    const createdRoutine = await apiCall('routines', 'POST', token, { name, goal })
-    // console.log('createdRoutine', createdRoutine);
-    if (createdRoutine.error) {
-      if (createdRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
-        alert(`You must create a routine with a unique name.`);
+    // console.log('PATCH to apiCall', { name, goal })
+    const updatedRoutine = await apiCall(`routines/${updateRoutine.id}`, 'PATCH', token, { name, goal })
+    // console.log('updatedRoutine', updatedRoutine);
+    if (updatedRoutine.error) {
+      if (updatedRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
+        alert(`Your routine must have a unique name.`);
       } else {
-        alert('There was an error in creating your new routine.')
+        alert('There was an error updating your new routine.')
       }
-    } else if (createdRoutine.id) {
-      setMyRoutines([createdRoutine, ...myRoutines]);
+    } else if (updatedRoutine) {
+      // setMyRoutines([updatedRoutine, ...filterRoutines(myRoutines, updatedRoutine)]);
+      setMyDetailedRoutine(updatedRoutine);
       resetState();
     } else {
-      alert('There was an error in creating your new routine.')
+      alert('There was an error updating your new routine.')
     }
   }
 
   const resetState = () => {
     setName('');
     setGoal('');
-    setIsCreatingRoutine(false);
+    setUpdateRoutine(false);
+  }
+
+  const filterRoutines = (oldRoutines, updatedRoutine) => {
+    return oldRoutines.filter((routine) => {
+      return routine.id != updatedRoutine.id;
+    })
   }
 
   if (!user && !token) { return null }  // Reduntant if MyRoutines only appears when logged in?
@@ -38,7 +45,7 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
         event.preventDefault();
         handleSubmit();
       }}>
-        <h3>Create a New Routine</h3>
+        <h3>Update Your Routine</h3>
         <div>
           <div>Name:</div>
           <input
@@ -76,4 +83,4 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
   )
 }
 
-export default CreateRoutine;
+export default UpdateRoutine;

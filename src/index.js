@@ -34,6 +34,7 @@ const App = () => {
   const [token, setToken] = useState('');
   const [activities, setActivities]= useState([]);
   const [routines, setRoutines] = useState([]);
+  // const [myRoutines, setMyRoutines] = useState([]);
   const [detailedRoutine, setDetailedRoutine]= useState([]);
   const [myDetailedRoutine, setMyDetailedRoutine] = useState([]);
   const [loggingOut, setLoggingOut] = useState(false);
@@ -116,7 +117,7 @@ const App = () => {
         <Route path ="/my-routines/:routineId">
           <MyDetailedRoutine myDetailedRoutine={myDetailedRoutine} setMyDetailedRoutine={setMyDetailedRoutine} token = {token} user = {user}/>
         </Route>
-        <MyRoutines user={user} token={token} myDetailedRoutine={myDetailedRoutine} setMyDetailedRoutine={setMyDetailedRoutine}/>
+        <MyRoutines user={user} token={token} myDetailedRoutine={myDetailedRoutine} setMyDetailedRoutine={setMyDetailedRoutine} /*myRoutines={myRoutines} setMyRoutines={setMyRoutines}*//>
       </Route>
       
       <Route path="/activities">

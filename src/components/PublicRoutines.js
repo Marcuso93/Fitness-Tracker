@@ -29,7 +29,7 @@ const PublicRoutines = ({routines, setRoutines, setDetailedRoutine}) => {
     <div className="public-routines">
         {
             routines.map((routine) => {
-                console.log("activities:",routine.activities)
+                //console.log("activities:",routine.activities)
                 return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id} className="routine-body">                    
                     <div>Name: {routine.name}</div>
                     <div>Goal: {routine.goal}</div>
