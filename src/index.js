@@ -20,8 +20,8 @@ import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, Detailed
   //For owned routine
     //***update the name and goal for the routine
     //***delete the entire routine
-    //add an activity to a routine via a form which has a dropdown for all activities, an inputs for count and duration
-    //update the duration or count of any activity on the routine
+    //***add an activity to a routine via a form which has a dropdown for all activities, an inputs for count and duration
+    //***update the duration or count of any activity on the routine
     //remove any activity from the routine
   //On Activities tab
     //***show form to create new activity (name and description)
@@ -123,6 +123,8 @@ const App = () => {
             user={user} 
             myRoutines={myRoutines} 
             setMyRoutines={setMyRoutines}
+            activities={activities}
+            setActivities={setActivities}
           />
         </Route>
       </Route>

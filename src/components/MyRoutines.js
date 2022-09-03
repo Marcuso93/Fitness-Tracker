@@ -15,7 +15,7 @@ import { useHistory } from "react-router-dom";
     //     be able to update the duration or count of any activity on the routine
     //     be able to remove any activity from the routine
 
-const MyRoutines = ({ user, token, setMyDetailedRoutine, myRoutines, setMyRoutines}) => {
+const MyRoutines = ({ user, token, setMyDetailedRoutine, myRoutines, setMyRoutines }) => {
   const [isCreatingRoutine, setIsCreatingRoutine] = useState(false);
   const history = useHistory();
 

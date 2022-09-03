@@ -34,21 +34,36 @@ const setToken = (body, token) => {
 }
 
 export const fetchActivities = async() => {
-  const data = await apiCall('/activities', "GET", null)
+  const data = await apiCall('activities', "GET", null)
   return data || []
 }
 
 export const fetchRoutines = async() => {
-  const data = await apiCall('/routines', "GET", null)
+  const data = await apiCall('routines', "GET", null)
   return data || []
 }
 
 export const fetchMyRoutines = async(user) => {
-  const data = await apiCall(`/users/${user.username}/routines`, 'GET')
+  const data = await apiCall(`users/${user.username}/routines`, 'GET')
   return data || []
 }
 
 export const deleteMyRoutine = async (token, routineId) => {
   const data = await apiCall(`routines/${routineId}`, "DELETE", token)
+  return data || []
+}
+
+export const addRoutineActivity = async (routineId, routineActivity, token) => {
+  const data = await apiCall(`routines/${routineId}/activities`, "POST", token, routineActivity)
+  return data || []
+}
+
+export const deleteRoutineActivity = async (routineActivityId, token) => {
+  const data = await apiCall(`routine_activites/${routineActivityId}`, "DELETE", token)
+  return data || []
+}
+
+export const patchRoutineActivity = async (routineActivityId, routineActivityFields, token) => {
+  const data = await apiCall(`routine_activites/${routineActivityId}`, "PATCH", token, routineActivityFields)
   return data || []
 }
