@@ -6,45 +6,39 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(null);
-  
-  // be shown a form to create a new routine
-    //     the form should have text fields for name and goal
 
   const handleSubmit = async () => {
-    // do API call
-    console.log('POST to apiCall', {name, goal, isPublic})
-    const createdRoutine = await apiCall('routines', 'POST', token, {name, goal, isPublic})
-    // if error, alert, if success reset everything
-    console.log('createdRoutine', createdRoutine);
+    // console.log('POST to apiCall', { name, goal, isPublic })
+    const createdRoutine = await apiCall('routines', 'POST', token, { name, goal, isPublic })
+    // console.log('createdRoutine', createdRoutine);
     if (createdRoutine.error) {
-      alert(`${createdRoutine.error.message}.`);
+      if (createdRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
+        alert(`You must create a routine with a unique name.`);
+      } else {
+        alert('There was an error in creating your new routine.')
+      }
     } else if (createdRoutine.id) {
+      setMyRoutines([createdRoutine, ...myRoutines]);
       resetState();
+    } else {
+      alert('There was an error in creating your new routine.')
     }
   }
 
-  const handleCancel = () => {
-    // reset everything
-    resetState();
-    setIsCreatingRoutine(false);
-  }
-
   const resetState = () => {
-    // reset everything
     setName('');
     setGoal('');
     setIsPublic(null);
     setIsCreatingRoutine(false);
-    setMyRoutines([createdRoutine, ...myRoutines]);
   }
 
   if (!user && !token) { return null }  // Reduntant if MyRoutines only appears when logged in?
-  
+
   return (
     <div className='popup-forms'>
-      <form onSubmit={(event) => { 
-        event.preventDefault(); 
-        handleSubmit(); 
+      <form onSubmit={(event) => {
+        event.preventDefault();
+        handleSubmit();
       }}>
         <h3>Create a New Routine</h3>
         <div>
@@ -54,7 +48,7 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
             type='text'
             name='name'
             placeholder='Routine Name Required'
-            value={ name }
+            value={name}
             onChange={(event) => setName(event.target.value)}
           />
         </div>
@@ -65,7 +59,7 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
             type='text'
             name='goal'
             placeholder='Routine Goal Required'
-            value={ goal }
+            value={goal}
             onChange={(event) => setGoal(event.target.value)}
           />
         </div>
@@ -80,14 +74,14 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
           />Make this a public routine. (Optional)</label>
         </div>
         <button type='submit'>Submit</button>
-        <button 
-          type='button' 
-          name='cancel' 
+        <button
+          type='button'
+          name='cancel'
           onClick={(event) => {
             event.preventDefault();
-            handleCancel();
+            resetState();
           }
-        }>Cancel</button>
+          }>Cancel</button>
       </form>
     </div>
   )
