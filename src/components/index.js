@@ -1,6 +1,3 @@
-// Use this file to export all components 
-// i.e. export {default as ______} from './_____'
-
 export {default as Account} from "./Account"
 export {default as Activities} from "./Activities"
 export {default as Home} from "./Home"

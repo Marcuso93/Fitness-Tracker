@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { apiCall } from '../utilities/api'
 
-const CreateActivity = ({ isCreatingActivity, setIsCreatingActivity, user, token, activities, setActivities }) => {
+const CreateActivity = ({ setIsCreatingActivity, user, token, activities, setActivities }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
@@ -13,10 +13,8 @@ const CreateActivity = ({ isCreatingActivity, setIsCreatingActivity, user, token
         return;
       }
     }
-    // console.log('POST to apiCall', { name, description })
+
     const createdActivity = await apiCall('activities', 'POST', token, { name, description })
-    // console.log('createdActivity', createdActivity);
-    
     if (createdActivity.error) {
       alert(`${createdActivity.message}`);
     } else if (createdActivity.id) {

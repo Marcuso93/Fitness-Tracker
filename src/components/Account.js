@@ -8,15 +8,11 @@ const Account = ({ token, setToken, user, setUser }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isRegistered, setIsRegistered] = useState(true);
-  
-  // console.log('user prop', user);
-  // console.log('token prop', token);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isRegistered) {
       const login = await apiCall('users/login', 'POST', null, {username, password});
-      // console.log('login', login);
       if (login.error) {
         alert(`${login.name}. ${login.message} If you are not an existing user, please register now.`);
       } else if (login.user && login.token){
@@ -29,7 +25,6 @@ const Account = ({ token, setToken, user, setUser }) => {
     } else {
       if (password === confirmPassword) {
         const register = await apiCall('users/register', 'POST', null, {username, password});
-        // console.log('register', register);
         if (register.error) {
           alert(`${register.name}. ${register.message}`)
         } else if (register.user && register.token) {
@@ -60,7 +55,7 @@ const Account = ({ token, setToken, user, setUser }) => {
         (user && token) ?
         <>
           <h3>User Profile</h3>
-          {/* Add whatever info we want to show here if user is logged in */}
+          {/* TODO: Add whatever info we want to show here if user is logged in */}
           <p>You are logged in as { user.username }.</p>
           <p>Add whatever information/instructions we want.</p>
         </> :

@@ -7,9 +7,7 @@ const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDeta
   const [goal, setGoal] = useState(updateRoutine.goal);
 
   const handleSubmit = async () => {
-    // console.log('PATCH to apiCall', { name, goal })
     const updatedRoutine = await apiCall(`routines/${updateRoutine.id}`, 'PATCH', token, { name, goal, isPublic: true })
-    // console.log('updatedRoutine', updatedRoutine);
     if (updatedRoutine.error) {
       if (updatedRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
         alert(`Your routine must have a unique name.`);
