@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { apiCall } from '../utilities/api'
 
-const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, myRoutines, setMyRoutines, setMyDetailedRoutine }) => {
+const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDetailedRoutine }) => {
   const [name, setName] = useState(updateRoutine.name);
   const [goal, setGoal] = useState(updateRoutine.goal);
   const [isPublic, setIsPublic] = useState(updateRoutine.isPublic);
@@ -18,7 +18,7 @@ const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, myRoutine
         alert('There was an error updating your new routine.')
       }
     } else if (updatedRoutine) {
-      setMyRoutines([updatedRoutine, ...filterRoutines(myRoutines, updatedRoutine)]);
+      // setMyRoutines([updatedRoutine, ...filterRoutines(myRoutines, updatedRoutine)]);
       setMyDetailedRoutine(updatedRoutine);
       resetState();
     } else {
