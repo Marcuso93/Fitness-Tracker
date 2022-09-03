@@ -8,7 +8,7 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
 
   const handleSubmit = async () => {
     // console.log('POST to apiCall', { name, goal })
-    const createdRoutine = await apiCall('routines', 'POST', token, { name, goal })
+    const createdRoutine = await apiCall('routines', 'POST', token, { name, goal, isPublic: true })
     // console.log('createdRoutine', createdRoutine);
     if (createdRoutine.error) {
       if (createdRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
