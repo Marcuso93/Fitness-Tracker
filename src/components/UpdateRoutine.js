@@ -5,11 +5,10 @@ import { apiCall } from '../utilities/api'
 const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDetailedRoutine }) => {
   const [name, setName] = useState(updateRoutine.name);
   const [goal, setGoal] = useState(updateRoutine.goal);
-  const [isPublic, setIsPublic] = useState(updateRoutine.isPublic);
 
   const handleSubmit = async () => {
-    // console.log('PATCH to apiCall', { name, goal, isPublic })
-    const updatedRoutine = await apiCall(`routines/${updateRoutine.id}`, 'PATCH', token, { name, goal, isPublic })
+    // console.log('PATCH to apiCall', { name, goal })
+    const updatedRoutine = await apiCall(`routines/${updateRoutine.id}`, 'PATCH', token, { name, goal })
     // console.log('updatedRoutine', updatedRoutine);
     if (updatedRoutine.error) {
       if (updatedRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
@@ -29,7 +28,6 @@ const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDeta
   const resetState = () => {
     setName('');
     setGoal('');
-    setIsPublic(null);
     setUpdateRoutine(false);
   }
 
@@ -70,16 +68,6 @@ const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDeta
             value={goal}
             onChange={(event) => { setGoal(event.target.value) }}
           />
-        </div>
-        <div>
-          <label><input
-            type='checkbox'
-            defaultChecked={updateRoutine.isPublic}
-            onChange={(event) => {
-              event.preventDefault();
-              setIsPublic(!isPublic);
-            }}
-          />Make this a public routine. (Optional)</label>
         </div>
         <button type='submit'>Submit</button>
         <button

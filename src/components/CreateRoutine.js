@@ -5,11 +5,10 @@ import { apiCall } from '../utilities/api'
 const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, myRoutines, setMyRoutines }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
-  const [isPublic, setIsPublic] = useState(null);
 
   const handleSubmit = async () => {
-    // console.log('POST to apiCall', { name, goal, isPublic })
-    const createdRoutine = await apiCall('routines', 'POST', token, { name, goal, isPublic })
+    // console.log('POST to apiCall', { name, goal })
+    const createdRoutine = await apiCall('routines', 'POST', token, { name, goal })
     // console.log('createdRoutine', createdRoutine);
     if (createdRoutine.error) {
       if (createdRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
@@ -28,7 +27,6 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
   const resetState = () => {
     setName('');
     setGoal('');
-    setIsPublic(null);
     setIsCreatingRoutine(false);
   }
 
@@ -63,16 +61,6 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
             value={goal}
             onChange={(event) => { setGoal(event.target.value) }}
           />
-        </div>
-        <div>
-          <label><input
-            type='checkbox'
-            checked={isPublic}
-            onChange={(event) => {
-              event.preventDefault();
-              setIsPublic(!isPublic);
-            }}
-          />Make this a public routine. (Optional)</label>
         </div>
         <button type='submit'>Submit</button>
         <button
