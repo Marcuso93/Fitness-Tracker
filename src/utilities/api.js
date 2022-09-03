@@ -59,11 +59,11 @@ export const addRoutineActivity = async (routineId, routineActivity, token) => {
 }
 
 export const deleteRoutineActivity = async (routineActivityId, token) => {
-  const data = await apiCall(`routine_activites/${routineActivityId}`, "DELETE", token)
+  const data = await apiCall(`routine_activities/${routineActivityId}`, "DELETE", token)
   return data || []
 }
 
 export const patchRoutineActivity = async (routineActivityId, routineActivityFields, token) => {
-  const data = await apiCall(`routine_activites/${routineActivityId}`, "PATCH", token, routineActivityFields)
+  const data = await apiCall(`routine_activities/${routineActivityId}`, "PATCH", token, routineActivityFields)
   return data || []
 }

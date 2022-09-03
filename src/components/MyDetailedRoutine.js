@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { deleteMyRoutine, fetchActivities, addRoutineActivity } from "../utilities/api";
-import {UpdateRoutine, UpdateRoutineActivity} from "./UpdateRoutine";
+import { UpdateRoutine, UpdateRoutineActivity } from "./index";
 
-// TODO: add the added activity to the page
+// TODO: add the added activity to the page in real time
 
 const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, user, myRoutines, setMyRoutines, activities, setActivities }) => {
   const [updateRoutine, setUpdateRoutine] = useState(false);
@@ -37,15 +37,21 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
   }
 
   const handleRoutineActivitySubmit = async () => {
-    // send it routineId and {activityId: newRoutineActivity.id, count, duration}
     const activityId = newRoutineActivity;
-    // console.log('submitting routineId, body, token', [myDetailedRoutine.id, {activityId, count, duration}, token])
-    const addedRoutineActivity = await addRoutineActivity(
+    await addRoutineActivity(
       myDetailedRoutine.id, 
       {activityId, count, duration}, 
       token
     );
-    // console.log('addRoutineActivity', addedRoutineActivity)
+    const newActivity = {
+      id: activityId,
+      name: newRoutineActivity.name,
+      description: newRoutineActivity.description
+    }
+    const newObj = {
+      activities: [newActivity, ...myDetailedRoutine.activities]
+    }
+    setMyDetailedRoutine(Object.assign(myDetailedRoutine, newObj))
     resetState();
   }
   
@@ -68,13 +74,17 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         {
           myDetailedRoutine.activities.map((activity) => {
             return (
-            <div key={activity.id} onClick={
-              setUpdateActivity(activity)
-            }>
+            <div key={activity.id}>
               <h3>{activity.name}</h3>
               <div>{activity.description}</div>
               <div>Duration: {activity.duration}</div>
               <div>Count: {activity.count}</div>
+              <button onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                setUpdateActivity(activity);
+              }
+              }>Edit</button>
             </div>
           )})
         }
@@ -156,7 +166,9 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         myDetailedRoutine={myDetailedRoutine} 
         setMyDetailedRoutine={setMyDetailedRoutine} 
         myRoutines={myRoutines}
-        setMyRoutines={setMyRoutines}/> :
+        setMyRoutines={setMyRoutines}
+        user={user}
+        token={token}/> :
       null
     }
   </div>

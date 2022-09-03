@@ -27,6 +27,8 @@ import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, Detailed
     //***show form to create new activity (name and description)
     //***show error if already exists
     
+// TODO: ADD SOME SCROLLBARS
+
 const App = () => {
   const [user, setUser] = useState(false);
   const [token, setToken] = useState('');
