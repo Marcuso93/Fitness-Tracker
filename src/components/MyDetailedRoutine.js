@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import { deleteMyRoutine } from "../utilities/api";
 import UpdateRoutine from "./UpdateRoutine";
 
-const MyDetailedRoutine = ({myDetailedRoutine, setMyDetailedRoutine, token, user}) => {
+const MyDetailedRoutine = ({myDetailedRoutine, setMyDetailedRoutine, token, user, myRoutines, setMyRoutines}) => {
     const [updateRoutine, setUpdateRoutine] = useState(false);
     const history = useHistory();
-    
+
     const handleClose = () => {
         setMyDetailedRoutine("");
         history.push("/my-routines");
@@ -14,7 +14,7 @@ const MyDetailedRoutine = ({myDetailedRoutine, setMyDetailedRoutine, token, user
 
     const handleDeleteRoutine = async (e, Id) => {
         e.stopPropagation()
-        if (window.confirm("Are you sure to delete your routine?"))
+        if (window.confirm("Are you sure you want to delete your routine?"))
         deleteMyRoutine(token, Id);
         history.push(`/my-routines/`);
     }
@@ -26,14 +26,19 @@ const MyDetailedRoutine = ({myDetailedRoutine, setMyDetailedRoutine, token, user
 
         {
             (myDetailedRoutine.activities) ?
-            myDetailedRoutine.activities.map((activity) => {
-                return <div key={activity.id}>
-                    <h3>Title: {activity.name}</h3>
-                    <div>Description: {activity.description}</div>
-                    <div>Duration: {activity.duration}</div>
-                    <div>Count: {activity.count}</div>
-                </div>
-            }) :
+            <>
+                <h3>Activities</h3>
+                {
+                    myDetailedRoutine.activities.map((activity) => {
+                        return <div key={activity.id}>
+                            <h3>Title: {activity.name}</h3>
+                            <div>Description: {activity.description}</div>
+                            <div>Duration: {activity.duration}</div>
+                            <div>Count: {activity.count}</div>
+                        </div>
+                    })
+                } 
+            </> :
             null
         }
         <button
@@ -46,7 +51,7 @@ const MyDetailedRoutine = ({myDetailedRoutine, setMyDetailedRoutine, token, user
         <button onClick={handleClose} >Close</button>
         {
             updateRoutine ?
-            <UpdateRoutine updateRoutine={updateRoutine} setUpdateRoutine={setUpdateRoutine} user={user} token={token} setMyDetailedRoutine={setMyDetailedRoutine} /> :
+            <UpdateRoutine updateRoutine={updateRoutine} setUpdateRoutine={setUpdateRoutine} user={user} token={token} setMyDetailedRoutine={setMyDetailedRoutine} myRoutines={myRoutines} setMyRoutines={setMyRoutines} /> :
             null
         }
     </div>
