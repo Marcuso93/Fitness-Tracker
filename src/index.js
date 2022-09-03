@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavLink, BrowserRouter, Route } from "react-router-dom";
-import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine } from './components/index';
+import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine, CreateRoutine } from './components/index';
 
 //-Uregistered:
   //see a Sign Up/Sign In form
@@ -117,7 +117,7 @@ const App = () => {
       </Route>
 
       <Route path="/my-routines">
-        <MyRoutines />
+        <MyRoutines user={user} token={token}/>
       </Route>
       
       <Route path="/activities">
