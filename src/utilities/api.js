@@ -50,6 +50,5 @@ export const fetchMyRoutines = async(user) => {
 
 export const deleteMyRoutine = async (token, routineId) => {
   const data = await apiCall(`routines/${routineId}`, "DELETE", token)
-  console.log("data here:", data)
   return data || []
 }

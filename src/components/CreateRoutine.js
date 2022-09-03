@@ -2,14 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import { apiCall } from '../utilities/api'
 
-const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, myRoutines, setMyRoutines }) => {
+const CreateRoutine = ({ setIsCreatingRoutine, user, token, myRoutines, setMyRoutines }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
 
   const handleSubmit = async () => {
-    // console.log('POST to apiCall', { name, goal })
     const createdRoutine = await apiCall('routines', 'POST', token, { name, goal, isPublic: true })
-    // console.log('createdRoutine', createdRoutine);
     if (createdRoutine.error) {
       if (createdRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
         alert(`You must create a routine with a unique name.`);
