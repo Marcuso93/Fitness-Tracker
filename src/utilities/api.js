@@ -44,3 +44,9 @@ export const fetchRoutines = async() => {
   console.log("data here:", data)
   return data || []
 }
+
+export const fetchMyRoutines = async(user) => {
+  const data = await apiCall(`/users/${user.username}/routines`, 'GET')
+  console.log("data here:", data)
+  return data || []
+}

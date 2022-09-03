@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CreateRoutine } from ".";
+import { fetchMyRoutines } from "../utilities/api.js"
 
 // TODO:
     // be shown a form to create a new routine
@@ -18,8 +19,15 @@ const MyRoutines = ({ user, token }) => {
   const [isCreatingRoutine, setIsCreatingRoutine] = useState(false);
   const [myRoutines, setMyRoutines] = useState([]);   // USE THIS TO SET myRoutines to display
 
+
+  useEffect(() => {
+    (async () => {
+        const getMyRoutines = await fetchMyRoutines(user);
+        setMyRoutines(getMyRoutines)
+    })()
+    }, [])
   return (
-    <>
+    <div className="text-forground">
       <h1>My Routines</h1>
       {/* display myRoutines from state */}
       {
@@ -39,9 +47,8 @@ const MyRoutines = ({ user, token }) => {
         </> :
         <div>Please login or register to see and create your own routines!</div>
       }
-    </>
+    </div>
   )
-
 }
 
 export default MyRoutines;
