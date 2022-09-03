@@ -141,3 +141,7 @@ button{
     padding: 50px;
     border: 1px gray solid;
 }
+
+.myRoutine:hover{
+    background-color: lightgray;
+}

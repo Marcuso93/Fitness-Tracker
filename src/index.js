@@ -1,22 +1,22 @@
 import { React, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavLink, BrowserRouter, Route } from "react-router-dom";
-import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine, CreateRoutine } from './components/index';
+import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine, CreateRoutine, MyDetailedRoutine } from './components/index';
 
 //-Uregistered:
-  //see a Sign Up/Sign In form
-  //register
-  ///can edit messages if error during registration
-  //tabbed navigation for Routines and activities
-  //see list of all activities
+  //***see a Sign Up/Sign In form
+  //***register
+  ///***can edit messages if error during registration
+  //***tabbed navigation for Routines and activities
+  //***see list of all activities
 
 //-Registered:
-  //login
+  //***login
   //can edit messages if error during registration
-  //stay logged in between page visits
-  //log out
-  //see tabbed navigation for Routines, My Routines (once logged in), and Activities (with matching routes)
-  //Form to create a new routine(routine name, goal, creator username)
+  //***stay logged in between page visits
+  //***log out
+  //***see tabbed navigation for Routines, My Routines (once logged in), and Activities (with matching routes)
+  //***Form to create a new routine(routine name, goal, creator username)
   //For owned routine
     //update the name and goal for the routine
     //delete the entire routine
@@ -24,7 +24,7 @@ import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, Detailed
     //update the duration or count of any activity on the routine
     //remove any activity from the routine
   //On Activities tab
-    //show form to create new activity (name and description)
+    //***show form to create new activity (name and description)
     //show error if already exists
     
 const App = () => {
@@ -35,6 +35,7 @@ const App = () => {
   const [activities, setActivities]= useState([]);
   const [routines, setRoutines] = useState([]);
   const [detailedRoutine, setDetailedRoutine]= useState([]);
+  const [myDetailedRoutine, setMyDetailedRoutine] = useState([]);
   const [loggingOut, setLoggingOut] = useState(false);
 
   return (
@@ -101,8 +102,7 @@ const App = () => {
           <DetailedRoutine
             detailedRoutine={detailedRoutine}
             setDetailedRoutine={setDetailedRoutine}            
-          />
-          
+          />          
         </Route>
         <PublicRoutines 
           routines={routines} 
@@ -110,14 +110,13 @@ const App = () => {
           detailedRoutine={detailedRoutine} 
           setDetailedRoutine={setDetailedRoutine}
         />
-        {/* <DetailedRoutines
-          detailedRoutines={detailedRoutines}
-          setDetailededRoutines={setDetailedRoutines}
-        /> */}
       </Route>
 
       <Route path="/my-routines">
-        <MyRoutines user={user} token={token}/>
+        <Route path ="/my-routines/:routineId">
+          <MyDetailedRoutine myDetailedRoutine={myDetailedRoutine} setMyDetailedRoutine={setMyDetailedRoutine}/>
+        </Route>
+        <MyRoutines user={user} token={token} myDetailedRoutine={myDetailedRoutine} setMyDetailedRoutine={setMyDetailedRoutine}/>
       </Route>
       
       <Route path="/activities">
