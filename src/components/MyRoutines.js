@@ -34,12 +34,6 @@ const MyRoutines = ({ user, token, setMyDetailedRoutine }) => {
     }, [])
 
 
-  // const deleteRoutineBtn = async (e, routine.id) => {
-  //   e.stopPropagation()
-  //   if (window.confirm("Are you sure you want to delete your Routine?"))
-
-  // }
-
   return (
     <div className="text-forground">
       <h1>My Routines</h1>
