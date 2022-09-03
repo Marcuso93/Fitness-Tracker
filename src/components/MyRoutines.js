@@ -5,6 +5,7 @@ import { CreateRoutine } from ".";
     // be shown a form to create a new routine
     //     the form should have text fields for name and goal
 
+
     // for each routine which is owned by me I should
     //     be able to update the name and goal for the routine
     //     be able to delete the entire routine
@@ -40,6 +41,7 @@ const MyRoutines = ({ user, token }) => {
       }
     </>
   )
+
 }
 
 export default MyRoutines;

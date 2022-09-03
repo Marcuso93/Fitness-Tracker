@@ -22,7 +22,7 @@ const DetailedRoutine  = ({ detailedRoutine, setDetailedRoutine }) => {
                 </div>
             }) 
             }
-            <button onClick={handleClose}>Close</button>
+            <button onClick={handleClose} >Close</button>
             </div>            
         } 
 
