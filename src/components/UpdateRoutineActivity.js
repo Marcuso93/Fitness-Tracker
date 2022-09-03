@@ -23,6 +23,7 @@ const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRou
         }
     }
 
+    // TODO: make delete update in real time
     const handleDelete = async () => {
         const deleted = await deleteRoutineActivity(updateActivity.routineActivityId, token);
         console.log('deleted', deleted)

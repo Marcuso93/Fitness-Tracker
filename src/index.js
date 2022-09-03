@@ -28,6 +28,7 @@ import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, Detailed
     //***show error if already exists
     
 // TODO: ADD SOME SCROLLBARS
+// TODO: save JWT in localstorage, check to see if it's saved, make fetch call and setUser
 
 const App = () => {
   const [user, setUser] = useState(false);

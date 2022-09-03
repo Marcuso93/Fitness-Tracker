@@ -109,7 +109,7 @@ const Account = ({ token, setToken, user, setUser }) => {
             {
               isRegistered ?
               <>
-                <p>New to Fitness Trackr?</p>
+                <p>New to Fitness Trac.kr?</p>
                 <button 
                   type='submit'
                   onClick={(event) => {

@@ -3,8 +3,6 @@ import { useHistory } from "react-router-dom";
 import { deleteMyRoutine, fetchActivities, addRoutineActivity } from "../utilities/api";
 import { UpdateRoutine, UpdateRoutineActivity } from "./index";
 
-// TODO: add the added activity to the page in real time
-
 const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, user, myRoutines, setMyRoutines, activities, setActivities }) => {
   const [updateRoutine, setUpdateRoutine] = useState(false);
   const [newRoutineActivity, setNewRoutineActivity] = useState({});
@@ -12,8 +10,6 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
   const [duration, setDuration] = useState(0);
   const [updateActivity, setUpdateActivity] = useState(false);
   const history = useHistory();
-
-  // console.log('newRoutineActivity', newRoutineActivity);
 
   useEffect(() => {
     (async () => {
