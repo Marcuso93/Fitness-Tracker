@@ -25,6 +25,7 @@ const MyDetailedRoutine = ({myDetailedRoutine, setMyDetailedRoutine, token, user
         <div>Goal: {myDetailedRoutine.goal}</div> 
 
         {
+            (myDetailedRoutine.activities) ?
             myDetailedRoutine.activities.map((activity) => {
                 return <div key={activity.id}>
                     <h3>Title: {activity.name}</h3>
@@ -32,7 +33,8 @@ const MyDetailedRoutine = ({myDetailedRoutine, setMyDetailedRoutine, token, user
                     <div>Duration: {activity.duration}</div>
                     <div>Count: {activity.count}</div>
                 </div>
-            })
+            }) :
+            null
         }
         <button
             onClick={(event) => {
