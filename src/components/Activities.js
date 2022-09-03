@@ -20,7 +20,7 @@ const Activities = ({activities, setActivities}) => {
         {
             activities.map((activity) => {
                 //console.log("activities:",routine.activities)
-                return <div key={activity.id}>                    
+                return <div key={activity.id} className="activity-body">                    
                     <div>{activity.name}</div>
                                  
                 </div>

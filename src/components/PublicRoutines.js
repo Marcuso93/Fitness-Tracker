@@ -26,7 +26,7 @@ const PublicRoutines = ({routines, setRoutines, setDetailedRoutine}) => {
     <div className="text-forground">
     <h1>PublicRoutines</h1>
 
-    <div>
+    <div className="public-routines">
         {
             routines.map((routine) => {
                 console.log("activities:",routine.activities)
