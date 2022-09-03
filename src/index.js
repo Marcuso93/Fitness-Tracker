@@ -127,6 +127,8 @@ const App = () => {
         <Activities 
           activities={activities} 
           setActivities={setActivities}
+          user={user}
+          token={token}
         />
       </Route>
 

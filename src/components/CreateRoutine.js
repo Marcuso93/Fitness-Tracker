@@ -42,25 +42,26 @@ const CreateRoutine = ({ isCreatingRoutine, setIsCreatingRoutine, user, token, m
       }}>
         <h3>Create a New Routine</h3>
         <div>
-          <div>Routine Name:</div>
+          <div>Name:</div>
           <input
             required
             type='text'
             name='name'
-            placeholder='Routine Name Required'
+            placeholder='Name Required'
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
         </div>
         <div>
-          <div>Routine Goal:</div>
-          <input
+          <div>Goal:</div>
+          <textarea
             required
-            type='text'
             name='goal'
-            placeholder='Routine Goal Required'
+            placeholder='Goal Required'
+            rows='3'
+            cols='16'
             value={goal}
-            onChange={(event) => setGoal(event.target.value)}
+            onChange={(event) => { setGoal(event.target.value) }}
           />
         </div>
         <div>
