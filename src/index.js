@@ -83,6 +83,8 @@ const App = () => {
         }  
       </nav>
       
+      <h1 id="site-name">Fitness Trac.kr</h1>
+
       <Route exact path='/'>
         {/* to account page to login/register maybe */}
         <Account token={token} setToken={setToken} user={user} setUser={setUser} />
