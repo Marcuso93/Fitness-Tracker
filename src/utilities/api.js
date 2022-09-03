@@ -35,24 +35,21 @@ const setToken = (body, token) => {
 
 export const fetchActivities = async() => {
   const data = await apiCall('/activities', "GET", null)
-  console.log("data here:", data)
   return data || []
 }
 
 export const fetchRoutines = async() => {
   const data = await apiCall('/routines', "GET", null)
-  console.log("data here:", data)
   return data || []
 }
 
 export const fetchMyRoutines = async(user) => {
   const data = await apiCall(`/users/${user.username}/routines`, 'GET')
-  console.log("data here:", data)
   return data || []
 }
 
-export const deleteMyRoutine = async() => {
-  const data = await apiCall(`routine_activities/${routineActivity.id}`, 'DELETE')
+export const deleteMyRoutine = async (token, routineId) => {
+  const data = await apiCall(`routines/${routineId}`, "DELETE", token)
   console.log("data here:", data)
   return data || []
 }

@@ -145,3 +145,18 @@ button{
 .myRoutine:hover{
     background-color: lightgray;
 }
+
+.myDetailedRoutine{
+    position: fixed ;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 1rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(5px 5px 10px #000);
+    transition: all 1s ease-in-out;
+    animation: publicRoutinesAnimation 1s;
+}

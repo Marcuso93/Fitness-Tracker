@@ -24,7 +24,7 @@ const PublicRoutines = ({routines, setRoutines, setDetailedRoutine}) => {
 
     return <>
     <div className="text-forground">
-    <h1>PublicRoutines</h1>
+    <h1>Public Routines</h1>
 
     <div className="public-routines">
         {

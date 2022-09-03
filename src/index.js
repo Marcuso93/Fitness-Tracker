@@ -19,13 +19,13 @@ import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, Detailed
   //***Form to create a new routine(routine name, goal, creator username)
   //For owned routine
     //update the name and goal for the routine
-    //delete the entire routine
+    //***delete the entire routine
     // add an activity to a routine via a form which has a dropdown for all activities, an inputs for count and duration
     //update the duration or count of any activity on the routine
     //remove any activity from the routine
   //On Activities tab
     //***show form to create new activity (name and description)
-    //show error if already exists
+    //***show error if already exists
     
 const App = () => {
 
@@ -115,7 +115,7 @@ const App = () => {
 
       <Route path="/my-routines">
         <Route path ="/my-routines/:routineId">
-          <MyDetailedRoutine myDetailedRoutine={myDetailedRoutine} setMyDetailedRoutine={setMyDetailedRoutine} token={token} user={user} /*myRoutines={myRoutines} setMyRoutines={setMyRoutines}*//>
+          <MyDetailedRoutine myDetailedRoutine={myDetailedRoutine} setMyDetailedRoutine={setMyDetailedRoutine} token = {token} user = {user}/>
         </Route>
         <MyRoutines user={user} token={token} myDetailedRoutine={myDetailedRoutine} setMyDetailedRoutine={setMyDetailedRoutine} /*myRoutines={myRoutines} setMyRoutines={setMyRoutines}*//>
       </Route>
@@ -127,8 +127,6 @@ const App = () => {
         <Activities 
           activities={activities} 
           setActivities={setActivities}
-          user={user}
-          token={token}
         />
       </Route>
 
