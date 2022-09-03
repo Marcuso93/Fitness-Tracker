@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CreateRoutine } from ".";
+import { fetchMyRoutines } from "../utilities/api.js"
+import { useHistory } from "react-router-dom";
 
 // TODO:
     // be shown a form to create a new routine
@@ -14,12 +16,32 @@ import { CreateRoutine } from ".";
     //     be able to remove any activity from the routine
 
 
-const MyRoutines = ({ user, token }) => {
+const MyRoutines = ({ user, token, setMyDetailedRoutine }) => {
   const [isCreatingRoutine, setIsCreatingRoutine] = useState(false);
   const [myRoutines, setMyRoutines] = useState([]);   // USE THIS TO SET myRoutines to display
+  const history = useHistory();
+
+  const handleRoutineClick = (e, routine) => {
+      setMyDetailedRoutine(routine)
+      history.push(`/my-routines/${routine.id}`)
+  }
+
+  useEffect(() => {
+    (async () => {
+        const getMyRoutines = await fetchMyRoutines(user);
+        setMyRoutines(getMyRoutines)
+    })()
+    }, [])
+
+
+  // const deleteRoutineBtn = async (e, routine.id) => {
+  //   e.stopPropagation()
+  //   if (window.confirm("Are you sure you want to delete your Routine?"))
+
+  // }
 
   return (
-    <>
+    <div className="text-forground">
       <h1>My Routines</h1>
       {/* display myRoutines from state */}
       {
@@ -31,6 +53,16 @@ const MyRoutines = ({ user, token }) => {
               event.preventDefault();
               setIsCreatingRoutine(true);
           }}>Create New Routine</button>
+          
+          {/* map over myRoutines */}
+          <h3>My Routines</h3>
+          {myRoutines.map((routine) => {
+            return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id} className="myRoutine">
+              <div>Name: {routine.name}</div>
+              <div>Goal: {routine.goal}</div>
+            </div>
+          })}
+          
           {
             isCreatingRoutine ?
             <CreateRoutine isCreatingRoutine={isCreatingRoutine} setIsCreatingRoutine={setIsCreatingRoutine} user={user} token={token} myRoutines={myRoutines} setMyRoutines={setMyRoutines}/> :
@@ -39,9 +71,8 @@ const MyRoutines = ({ user, token }) => {
         </> :
         <div>Please login or register to see and create your own routines!</div>
       }
-    </>
+    </div>
   )
-
 }
 
 export default MyRoutines;

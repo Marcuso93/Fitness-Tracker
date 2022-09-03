@@ -80,6 +80,7 @@ body{
     flex-direction: column;
 }
 button{
+    font-weight: bold;
     margin: .9rem;
     background-color: red;
     box-shadow: 2px 4px 13px 1px rgba(0,0,0,0.43);
@@ -139,4 +140,8 @@ button{
     background-color: lightgrey;
     padding: 50px;
     border: 1px gray solid;
+}
+
+.myRoutine:hover{
+    background-color: lightgray;
 }
