@@ -1,33 +1,8 @@
 import { React, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavLink, BrowserRouter, Route } from "react-router-dom";
-import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine, CreateRoutine, MyDetailedRoutine } from './components/index';
+import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine, MyDetailedRoutine } from './components/index';
 
-//-Uregistered:
-  //***see a Sign Up/Sign In form
-  //***register
-  ///***can edit messages if error during registration
-  //***tabbed navigation for Routines and activities
-  //***see list of all activities
-
-//-Registered:
-  //***login
-  //can edit messages if error during registration
-  //***stay logged in between page visits
-  //***log out
-  //***see tabbed navigation for Routines, My Routines (once logged in), and Activities (with matching routes)
-  //***Form to create a new routine(routine name, goal, creator username)
-  //For owned routine
-    //***update the name and goal for the routine
-    //***delete the entire routine
-    //***add an activity to a routine via a form which has a dropdown for all activities, an inputs for count and duration
-    //***update the duration or count of any activity on the routine
-    //remove any activity from the routine
-  //On Activities tab
-    //***show form to create new activity (name and description)
-    //***show error if already exists
-    
-// TODO: ADD SOME SCROLLBARS
 // TODO: save JWT in localstorage, check to see if it's saved, make fetch call and setUser
 
 const App = () => {
@@ -54,11 +29,9 @@ const App = () => {
         
         {
           (token && user) ?
-          <>
-            <NavLink to="/my-routines" className="navlink" activeClassName="active">
-              My Routines
-            </NavLink>
-          </> :
+          <NavLink to="/my-routines" className="navlink" activeClassName="active">
+            My Routines
+          </NavLink> :
           null
         }
 
@@ -70,7 +43,6 @@ const App = () => {
           {(token && user) ? 'My Account' : 'Login/Register'}
         </NavLink>
 
-        {/* TODO: Fix styling so this matches Navlinks and doesn't look like button */}
         {
           (token && user) ?
           <input 
@@ -134,9 +106,6 @@ const App = () => {
       
       <Route path="/activities">
         <Activities activities={activities} setActivities={setActivities} user={user} token={token} />
-        <Route path="/activities/:activityId">
-        {/* TODO: Do we need to do something with this route? */}
-        </Route>
       </Route>
 
       <Route path="/account">

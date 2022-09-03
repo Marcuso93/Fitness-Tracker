@@ -52,7 +52,7 @@ nav{
 
 .detailedRoutines{
     position: fixed ;
-    background-color: black;
+    background-color:rgb(78, 77, 77);
     color: white;
     border: 1px solid black;
     border-radius: 20px;
@@ -90,9 +90,10 @@ body{
     flex-direction: column;
 }
 button{
-    font-weight: bold;
+    font-weight: 16pt;
     margin: .9rem;
-    background-color: red;
+    border-radius: 20px;
+    background-color: rgb(250, 120, 120);
     box-shadow: 2px 4px 13px 1px rgba(0,0,0,0.43);
     letter-spacing: .15rem;
     padding: 5px;
@@ -156,9 +157,13 @@ button{
     background-color: lightgray;
 }
 
+.myRoutine{
+    padding: 10px;
+}
+
 .myDetailedRoutine{
     position: fixed ;
-    background-color: black;
+    background-color:rgb(78, 77, 77);
     color: white;
     border: 1px solid black;
     border-radius: 20px;

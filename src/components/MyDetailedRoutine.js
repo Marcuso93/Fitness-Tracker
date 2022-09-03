@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { deleteMyRoutine, fetchActivities, addRoutineActivity } from "../utilities/api";
+import { deleteMyRoutine, fetchActivities, addRoutineActivity, fetchMyRoutines } from "../utilities/api";
 import { UpdateRoutine, UpdateRoutineActivity } from "./index";
 
 const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, user, myRoutines, setMyRoutines, activities, setActivities }) => {
@@ -39,15 +39,26 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
       {activityId, count, duration}, 
       token
     );
-    const newActivity = {
-      id: activityId,
-      name: newRoutineActivity.name,
-      description: newRoutineActivity.description
+    // const newActivity = filterActivities(activityId);
+    // const newActivity = {
+    //   id: activityId,
+    //   // name: 
+    //   // description: 
+    // }
+    const routines = await fetchMyRoutines(user);
+    const getNewRoutineActivies = () =>{
+      for (let i=0; i<routines.length; i++) {
+        if (routines[i].id == myDetailedRoutine.id){
+          return routines[i]
+        }
+      }
     }
-    const newObj = {
-      activities: [newActivity, ...myDetailedRoutine.activities]
-    }
-    setMyDetailedRoutine(Object.assign(myDetailedRoutine, newObj))
+    // const newObj = {
+    //   activities: [newActivity, ...myDetailedRoutine.activities]
+    // }
+    // setMyDetailedRoutine(Object.assign(myDetailedRoutine, newObj))
+    setMyDetailedRoutine(getNewRoutineActivies);
+    setMyRoutines(routines);
     resetState();
   }
   
@@ -80,7 +91,7 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
                 event.stopPropagation();
                 setUpdateActivity(activity);
               }
-              }>Edit</button>
+              }>Edit Activity</button>
             </div>
           )})
         }
@@ -100,12 +111,10 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
           id="select-activities"
           value={newRoutineActivity}
           onChange={(event) => { 
-            // console.log('event.target.value', JSON.stringify(event.target.value));
             setNewRoutineActivity(event.target.value) 
         }}>
           <option value="any">Any</option>
           {activities.map(activity => {
-            // console.log('selected activity', activity);
             return <option value={activity.id} key={activity.id}>{activity.name}</option>
           })}
         </select>        
@@ -139,7 +148,7 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         event.preventDefault();
         setUpdateRoutine(myDetailedRoutine);
       }}
-    >Update</button>
+    >Update Routine</button>
     <button onClick={(e) => { handleDeleteRoutine(e, myDetailedRoutine.id) }}>Delete</button>
     <button onClick={handleClose} >Close</button>
     {
@@ -161,7 +170,6 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         setUpdateActivity={setUpdateActivity} 
         myDetailedRoutine={myDetailedRoutine} 
         setMyDetailedRoutine={setMyDetailedRoutine} 
-        myRoutines={myRoutines}
         setMyRoutines={setMyRoutines}
         user={user}
         token={token}/> :
