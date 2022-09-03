@@ -1,39 +1,40 @@
 import React, { useState } from "react";
-import { deleteRoutineActivity , patchRoutineActivity} from "../utilities/api";
+import { deleteRoutineActivity, patchRoutineActivity, fetchMyRoutines } from "../utilities/api";
 
-// TODO: update in realtime (update/delete)
-
-const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRoutine, setMyDetailedRoutine, myRoutines, setMyRoutines, user, token}) => {
+const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRoutine, setMyDetailedRoutine, setMyRoutines, user, token}) => {
   const [count, setCount] = useState(updateActivity.count);
   const [duration, setDuration] = useState(updateActivity.duration);  
-  
-    // console.log('updateActivity', updateActivity)
 
     const handleSubmit = async () => {
         const patched = await patchRoutineActivity(updateActivity.routineActivityId, {count, duration}, token)
         if (patched.error) {
             alert(`There was an error updating your routine activity`);
         } else if (patched) {
-            // setMyRoutines([patched, ...filterRoutines(myRoutines, patched)])
-            // setMyDetailedRoutine(patched);
-            // console.log(patched)
+            const routines = await fetchMyRoutines(user);
+            const getNewRoutineActivies = () => {
+                for (let i = 0; i < routines.length; i++) {
+                    if (routines[i].id == myDetailedRoutine.id) {
+                        return routines[i]
+                    }
+                }
+            }
+            setMyDetailedRoutine(getNewRoutineActivies);
+            setMyRoutines(routines);
             resetState();
         } else {
             alert('There was an error updating your routine activity.')
         }
     }
 
-    // TODO: make delete update in real time
     const handleDelete = async () => {
         const deleted = await deleteRoutineActivity(updateActivity.routineActivityId, token);
-        console.log('deleted', deleted)
         if (deleted.error) {
             alert(`${deleted.message}`);
         } else if (deleted) {
             const newObj = {
-                activities: filterOutDeleted(myDetailedRoutine.activities, updateActivity.activityId)
+                activities: filterOutDeleted(myDetailedRoutine.activities, updateActivity.id)
             }
-            setMyDetailedRoutine(Object.assign(myDetailedRoutine.activities, newObj))
+            setMyDetailedRoutine(Object.assign(myDetailedRoutine, newObj))
             resetState();
         } else {
             alert('There was an error deleting your routine activity.')
@@ -51,12 +52,6 @@ const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRou
             return activity.id != deletedActivityId
         })
     }
-
-    // const filterRoutines = (oldRoutines, updatedRoutine) => {
-    //     return oldRoutines.filter((routine) => {
-    //         return routine.id != updatedRoutine.id;
-    //     })
-    // }
 
     if (!user && !token) { return null }  // Reduntant if MyRoutines only appears when logged in?
 
@@ -97,7 +92,7 @@ const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRou
                         event.preventDefault();
                         event.stopPropagation();
                         handleDelete();
-                    }}>Delete Activity</button>
+                    }}>Remove Activity</button>
                 <button
                     type='button'
                     name='cancel'

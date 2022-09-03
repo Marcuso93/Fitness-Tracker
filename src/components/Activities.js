@@ -33,7 +33,7 @@ const Activities = ({ activities, setActivities, user, token }) => {
           (activities && activities.length > 0) ?
           activities.map((activity) => {
             return (
-              <div key={activity.id} className="activity-body">
+              <div key={activity.id} className="routine-body">
                 <h3>{activity.name}</h3>
                 <div>{activity.description}</div>
               </div>
