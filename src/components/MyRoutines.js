@@ -11,11 +11,11 @@ import { useHistory } from "react-router-dom";
     // for each routine which is owned by me I should
     //  X  be able to update the name and goal for the routine
     //  X  be able to delete the entire routine
-    //     be able to add an activity to a routine via a small form which has a dropdown for all activities, an inputs for count and duration
-    //     be able to update the duration or count of any activity on the routine
-    //     be able to remove any activity from the routine
+    //  X  be able to add an activity to a routine via a small form which has a dropdown for all activities, an inputs for count and duration
+    //  X  be able to update the duration or count of any activity on the routine
+    //  X  be able to remove any activity from the routine
 
-const MyRoutines = ({ user, token, setMyDetailedRoutine, myRoutines, setMyRoutines}) => {
+const MyRoutines = ({ user, token, setMyDetailedRoutine, myRoutines, setMyRoutines }) => {
   const [isCreatingRoutine, setIsCreatingRoutine] = useState(false);
   const history = useHistory();
 
