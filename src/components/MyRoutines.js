@@ -45,7 +45,9 @@ const MyRoutines = ({ user, token, setMyDetailedRoutine, myRoutines, setMyRoutin
           }
           {
             isCreatingRoutine ?
-            <CreateRoutine setIsCreatingRoutine={setIsCreatingRoutine} user={user} token={token} myRoutines={myRoutines} setMyRoutines={setMyRoutines}/> :
+            <CreateRoutine setIsCreatingRoutine= {setIsCreatingRoutine}
+            user= {user} token= {token}
+            myRoutines= {myRoutines} setMyRoutines= {setMyRoutines}/> :
             null
           }
         </> :
