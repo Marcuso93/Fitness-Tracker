@@ -12,7 +12,7 @@ import {
   MyDetailedRoutine 
 } from './components/index';
 import { getUser } from "./utilities/api";
-import { tokenInStorage } from "./utilities/utils";
+import { findTokenInStorage } from "./utilities/utils";
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -27,7 +27,7 @@ const App = () => {
   useEffect(() => {
     (async () => {
       if (!token){
-        const localToken = tokenInStorage()
+        const localToken = findTokenInStorage()
         if (localToken) {
           console.log('Root index checked locaStorage for token, setToken/User.')  // TODO
           setToken(localToken);
@@ -85,12 +85,7 @@ const App = () => {
 
       <Route exact path='/'>
         {/* to account page to login/register maybe */}
-        <Account 
-          token={token} 
-          setToken={setToken} 
-          user={user} 
-          setUser={setUser} 
-        />
+        <Account token={token} setToken={setToken} user={user} setUser={setUser} />
       </Route>
 
       <Route path="/home">

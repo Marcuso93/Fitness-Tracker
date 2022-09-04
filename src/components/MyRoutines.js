@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CreateRoutine } from ".";
 import { fetchMyRoutines } from "../utilities/api.js"
 import { useHistory } from "react-router-dom";
-import { tokenInStorage } from "../utilities/utils";
+import { findTokenInStorage } from "../utilities/utils";
 import { getUser } from "../utilities/api.js";
 
 const MyRoutines = ({ user, setUser, token, setToken, setMyDetailedRoutine, myRoutines, setMyRoutines }) => {
@@ -19,7 +19,7 @@ const MyRoutines = ({ user, setUser, token, setToken, setMyDetailedRoutine, myRo
     (async() => {
       if (!token) {
         console.log('MyRoutines: No token, checking storage.')  // TODO
-        const storedToken = tokenInStorage();
+        const storedToken = findTokenInStorage();
         if (storedToken) {
           setToken(storedToken);
           const storedUser = await getUser(storedToken);
@@ -55,11 +55,11 @@ const MyRoutines = ({ user, setUser, token, setToken, setMyDetailedRoutine, myRo
             (myRoutines && myRoutines.length > 0) ?
             myRoutines.map((routine) => {
               return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id} className="routine-body">
-                <div>Name: {routine.name}</div>
+                <h3>{routine.name}</h3>
                 <div>Goal: {routine.goal}</div>
               </div>
             }) :
-            <div>Let's create your first routine!</div>
+            <h3>Let's create your first routine!</h3>
           }
           {
             isCreatingRoutine ?

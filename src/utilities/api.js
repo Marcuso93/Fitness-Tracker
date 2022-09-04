@@ -42,6 +42,11 @@ export const fetchActivities = async() => {
   return data || []
 }
 
+export const postActivity = async(token, name, description) => {
+  const data = await apiCall('activities', 'POST', token, { name, description });
+  return data || []
+}
+
 export const fetchRoutines = async() => {
   const data = await apiCall('routines', "GET", null)
   return data || []
@@ -59,6 +64,16 @@ export const loginUser = async(username, password) => {
 
 export const fetchMyRoutines = async(user) => {
   const data = await apiCall(`users/${user.username}/routines`, 'GET')
+  return data || []
+}
+
+export const postRoutine = async(token, name, goal) => {
+  const data = await apiCall('routines', 'POST', token, { name, goal, isPublic: true });
+  return data || []
+}
+
+export const patchRoutine = async(routineId, token, name, goal) => {
+  const data = await apiCall(`routines/${routineId}`, 'PATCH', token, { name, goal, isPublic: true });
   return data || []
 }
 

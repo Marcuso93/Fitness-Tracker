@@ -8,7 +8,7 @@ export const removeTokenFromStorage = () => {
   console.log('Token removed from localStorage.')
 }
 
-export const tokenInStorage = () => {
+export const findTokenInStorage = () => {
   const localToken = localStorage.getItem('JWT');
   if (localToken && localToken.length > 0) {
     console.log('Token found in localStorage.')

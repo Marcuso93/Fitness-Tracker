@@ -73,7 +73,7 @@ const UpdateRoutineActivity = ({
         event.preventDefault();
         handleSubmit();
       }}>
-        <h3>Update Your Routine Activity</h3>
+        <h3>Update Your Routine Activity ({updateActivity.name})</h3>
         <div>
           <div>Count:</div>
           <input
