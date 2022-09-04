@@ -55,7 +55,7 @@ const UpdateRoutine = ({
         event.preventDefault();
         handleSubmit();
       }}>
-        <h3>Update Your Routine</h3>
+        <h1>Update Your Routine</h1>
         <div>
           <div>Name:</div>
           <input
