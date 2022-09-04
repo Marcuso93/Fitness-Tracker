@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { deleteMyRoutine, fetchActivities, addRoutineActivity, fetchMyRoutines } from "../utilities/api";
 import { UpdateRoutine, UpdateRoutineActivity } from "./index";
+import { tokenInStorage } from "../utilities/utils";
+import { getUser } from "../utilities/api";
 
-const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, user, myRoutines, setMyRoutines, activities, setActivities }) => {
+const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, setToken, user, setUser, myRoutines, setMyRoutines, activities, setActivities }) => {
   const [updateRoutine, setUpdateRoutine] = useState(false);
   const [newRoutineActivity, setNewRoutineActivity] = useState({});
   const [count, setCount] = useState(0);
@@ -12,9 +14,52 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
   const history = useHistory();
 
   useEffect(() => {
+    // const storedToken = tokenInStorage();
+    // if (storedToken) {
+    //   setToken(storedToken);
+    //   const storedUser = await getUser(storedToken);
+    //   // console.log('storedToken storedUser', storedUser);
+    //   setUser(storedUser);
+    //   const getMyRoutines = await fetchMyRoutines(storedUser)
+    //   setMyRoutines(getMyRoutines);
+    // } else if (!storedToken) {
+    //   const getStoredUser = await getUser();
+    //   // console.log('!storedToken getStoredUser', getStoredUser);
+    //   setUser(getStoredUser);
+    //   const getMyRoutines = await fetchMyRoutines(user);
+    //   setMyRoutines(getMyRoutines);
+    // }
+    
+    // Better, but maybe not necessary:
+    // (async () => {
+    //   if (!token) {
+    //     console.log('MyDetailedRoutne: No token, checking storage.')
+    //     const storedToken = tokenInStorage();
+    //     if (storedToken) {
+    //       setToken(storedToken);
+    //       const storedUser = await getUser(storedToken);
+    //       setUser(storedUser);
+    //       const getMyRoutines = await fetchMyRoutines(storedUser);
+    //       setMyRoutines(getMyRoutines);
+    //       console.log('Ran with stored token successfully.')
+    //     } else {
+    //       alert('Please login or register')
+    //     }
+    //   } else {
+    //     const getMyRoutines = await fetchMyRoutines(user);
+    //     setMyRoutines(getMyRoutines);
+    //     console.log('MyDetailedRoutine: Already had token set, didnt need to check local storage. Successful.')
+    //   }
+    //   console.log('Getting activities.')
+    //   const getActivities = await fetchActivities();
+    //   setActivities(getActivities);
+    //   console.log('Successful activities.')
+    // })()
+
+    // FULLY FUNCTIONING TO REVERT BACK TO:
     (async () => {
       const getActivities = await fetchActivities();
-      setActivities(getActivities)
+      setActivities(getActivities);
     })()
   }, [])
 
@@ -33,6 +78,10 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
   }
 
   const handleRoutineActivitySubmit = async () => {
+    if (count < 0 || duration < 0) {
+      alert('Count and duration must be greater than or equal to zero.')
+      return
+    }
     const activityId = newRoutineActivity;
     await addRoutineActivity(
       myDetailedRoutine.id, 
@@ -84,8 +133,8 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
             <div key={activity.id}>
               <h3>{activity.name}</h3>
               <div>{activity.description}</div>
-              <div>Duration: {activity.duration}</div>
               <div>Count: {activity.count}</div>
+              <div>Duration (minutes): {activity.duration}</div>
               <button onClick={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
@@ -123,7 +172,7 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         <div>Count:</div>
         <input
           required
-          type='text'
+          type='number'
           name='count'
           placeholder='Count Required'
           value={count}
@@ -131,10 +180,10 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         />
       </div>
       <div>
-        <div>Duration:</div>
+        <div>Duration (in minutes):</div>
         <input
           required
-          type='text'
+          type='number'
           name='duration'
           placeholder='Duration Required'
           value={duration}

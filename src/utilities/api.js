@@ -72,7 +72,7 @@ export const patchRoutineActivity = async (routineActivityId, routineActivityFie
   return data || []
 }
 
-export const getUser = async () => {
-  const data = await apiCall(`users/me`, 'GET')
+export const getUser = async (possibleToken) => {
+  const data = await apiCall(`users/me`, 'GET', possibleToken)
   return data || []
 }

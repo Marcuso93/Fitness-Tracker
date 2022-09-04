@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { NavLink, BrowserRouter, Route } from "react-router-dom";
 import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine, MyDetailedRoutine } from './components/index';
 import { getUser } from "./utilities/api";
+import { tokenInStorage } from "./utilities/utils";
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -24,14 +25,6 @@ const App = () => {
       }
     })()
     }, [])
-  
-  const tokenInStorage = () => {
-    const localToken = localStorage.getItem('JWT');
-    if (localToken && localToken.length > 0){
-      return localToken
-    } else { return false }
-  }
-
 
   return (
     <main>
@@ -102,7 +95,9 @@ const App = () => {
       <Route path="/my-routines">
         <MyRoutines 
           user={user} 
+          setUser={setUser}
           token={token} 
+          setToken={setToken}
           myDetailedRoutine={myDetailedRoutine} 
           setMyDetailedRoutine={setMyDetailedRoutine} 
           myRoutines={myRoutines} 
@@ -113,7 +108,9 @@ const App = () => {
             myDetailedRoutine={myDetailedRoutine} 
             setMyDetailedRoutine={setMyDetailedRoutine} 
             token={token} 
+            setToken={setToken}
             user={user} 
+            setUser={setUser}
             myRoutines={myRoutines} 
             setMyRoutines={setMyRoutines}
             activities={activities}
