@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { apiCall } from '../utilities/api'
+import { fetchMyRoutines } from '../utilities/api'
 
-const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDetailedRoutine, myRoutines, setMyRoutines }) => {
+const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, myDetailedRoutine, setMyDetailedRoutine, myRoutines, setMyRoutines }) => {
   const [name, setName] = useState(updateRoutine.name);
   const [goal, setGoal] = useState(updateRoutine.goal);
 
@@ -15,8 +16,18 @@ const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDeta
         alert('There was an error updating your new routine.')
       }
     } else if (updatedRoutine) {
-      setMyRoutines([updatedRoutine, ...filterRoutines(myRoutines, updatedRoutine)])
-      setMyDetailedRoutine(updatedRoutine);
+      const routines = await fetchMyRoutines(user);
+      const getNewRoutine = () => {
+        for (let i = 0; i < routines.length; i++) {
+          if (routines[i].id == myDetailedRoutine.id) {
+            return routines[i]
+          }
+        }
+      }
+      setMyDetailedRoutine(getNewRoutine);
+      setMyRoutines(routines);
+      // setMyRoutines([updatedRoutine, ...filterRoutines(myRoutines, updatedRoutine)])
+      // setMyDetailedRoutine(updatedRoutine);
       resetState();
     } else {
       alert('There was an error updating your new routine.')
@@ -29,11 +40,11 @@ const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, setMyDeta
     setUpdateRoutine(false);
   }
 
-  const filterRoutines = (oldRoutines, updatedRoutine) => {
-    return oldRoutines.filter((routine) => {
-      return routine.id != updatedRoutine.id;
-    })
-  }
+  // const filterRoutines = (oldRoutines, updatedRoutine) => {
+  //   return oldRoutines.filter((routine) => {
+  //     return routine.id != updatedRoutine.id;
+  //   })
+  // }
 
   if (!user && !token) { return null }  // Reduntant if MyRoutines only appears when logged in?
 
