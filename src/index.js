@@ -105,10 +105,7 @@ const App = () => {
           setDetailedRoutine={setDetailedRoutine}
         />
         <Route path= "/public-routines/:routineId">
-          <DetailedRoutine 
-            detailedRoutine={detailedRoutine} 
-            setDetailedRoutine={setDetailedRoutine} 
-          />          
+          <DetailedRoutine detailedRoutine={detailedRoutine} setDetailedRoutine={setDetailedRoutine} />          
         </Route>
       </Route>
 
@@ -138,29 +135,14 @@ const App = () => {
       </Route>
       
       <Route path="/activities">
-        <Activities 
-          activities={activities} 
-          setActivities={setActivities} 
-          user={user} 
-          token={token} 
-        />
+        <Activities activities={activities} setActivities={setActivities} user={user} token={token} />
       </Route>
 
       <Route path="/account">
-        <Account 
-          token={token} 
-          setToken={setToken} 
-          user={user} 
-          setUser={setUser} 
-        />
+        <Account token={token} setToken={setToken} user={user} setUser={setUser} />
       </Route>
 
-      <Logout 
-        loggingOut={loggingOut} 
-        setLoggingOut={setLoggingOut} 
-        setUser={setUser} 
-        setToken={setToken} 
-      />    
+      <Logout loggingOut={loggingOut} setLoggingOut={setLoggingOut} setUser={setUser} setToken={setToken} />    
     </main>
   )
 }

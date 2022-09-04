@@ -47,6 +47,16 @@ export const fetchRoutines = async() => {
   return data || []
 }
 
+export const registerUser =async(username, password) => {
+  const data = await apiCall('users/register', 'POST', null, { username, password });
+  return data || []
+}
+
+export const loginUser = async(username, password) => {
+  const data = await apiCall('users/login', 'POST', null, { username, password });
+  return data || []
+}
+
 export const fetchMyRoutines = async(user) => {
   const data = await apiCall(`users/${user.username}/routines`, 'GET')
   return data || []

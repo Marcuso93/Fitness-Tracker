@@ -44,11 +44,13 @@ const Activities = ({ activities, setActivities, user, token }) => {
       </div>
       {
         (isCreatingActivity && user && token) ?
-          <CreateActivity setIsCreatingActivity={setIsCreatingActivity} 
-          user={user}
-          token={token}
-          activities={activities} 
-          setActivities={setActivities} /> :
+          <CreateActivity 
+            setIsCreatingActivity={setIsCreatingActivity} 
+            user={user}
+            token={token}
+            activities={activities} 
+            setActivities={setActivities} 
+          /> :
           null
       }
     </div>
