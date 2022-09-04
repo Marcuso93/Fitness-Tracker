@@ -1,6 +1,7 @@
 input[type=button]{
     all: unset;
 }
+
 nav{
     margin-bottom: 1rem;
     background-color: black;
@@ -14,6 +15,7 @@ nav{
     padding: .5rem;
     filter: drop-shadow(1px 1px 1px rgb(59, 59, 59));
 }
+
 .navlink, input[type=button] {
     margin-right: 2rem;
     color: rgb(255, 255, 255);
@@ -24,18 +26,22 @@ nav{
     padding: 5px;
     border-radius: 8px;
 }
+
 .navlink.active {
     color: rgb(235, 7, 7);
     font-size: 16pt;
 }
+
 .navlink:hover {
     background-color: rgb(14, 13, 13);
 }
+
 #site-name {
     font-family: 'Bangers', 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
     color: red;
     margin-top: -40px;
 }
+
 .logout-popup {
     position: fixed;
     top: 50%;
@@ -63,13 +69,16 @@ nav{
     filter: drop-shadow(5px 5px 10px #000);
     transition: all 1s ease-in-out;
     overflow-y: scroll;
-    height: 70%;
+    height: 50%;
+    width: 40%;
     animation: publicRoutinesAnimation 1s;
 }
+
 #app{
     margin-top: 4rem;
     display: flex;
 }
+
 body{
     margin-top: 50px;
     text-align: center;
@@ -78,6 +87,7 @@ body{
     font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
     background-image: url("mainWorkoutBackground.jpg");
 }
+
 .login{
     background-color: rgb(78, 77, 77);
     padding: 2rem;
@@ -89,6 +99,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 button{
     font-weight: 16pt;
     margin: .9rem;
@@ -110,6 +121,7 @@ button{
     padding-left: 10rem;
     padding-right: 10rem;
 }
+
 .text-forground{
     background-color: white;
     padding: 2rem;
@@ -118,10 +130,10 @@ button{
     padding-right: 5rem;
     padding-bottom: 5rem;
 }
+
 .public-routines{
     display: flex;
     flex-direction: column;
-
 }
 
 .routine-body{
@@ -132,6 +144,7 @@ button{
 .activity-body{
     padding:10px;
 }
+
 @keyframes publicRoutinesAnimation{
     from{
         left: -500px;
@@ -142,6 +155,7 @@ button{
         transform: translate(-50%, -50%);
     }
 }
+
 .popup-forms {
     position: fixed;
     top: 50%;
@@ -175,6 +189,15 @@ button{
     transition: all 1s ease-in-out;
     animation: publicRoutinesAnimation 1s;
     overflow-y: scroll;
-    height: 70%;
-    
+    height: 70%;    
+}
+
+.styleLines{
+    border-top: 1px solid white;
+    padding-top: 20px;
+}
+
+.detailedStyleLines{
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
 }

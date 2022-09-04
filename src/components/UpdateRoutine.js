@@ -3,7 +3,16 @@ import { useState } from 'react'
 import { apiCall } from '../utilities/api'
 import { fetchMyRoutines } from '../utilities/api'
 
-const UpdateRoutine = ({ updateRoutine, setUpdateRoutine, user, token, myDetailedRoutine, setMyDetailedRoutine, myRoutines, setMyRoutines }) => {
+const UpdateRoutine = ({ 
+    updateRoutine, 
+    setUpdateRoutine, 
+    user, 
+    token, 
+    myDetailedRoutine, 
+    setMyDetailedRoutine,
+    myRoutines, 
+    setMyRoutines 
+  }) => {
   const [name, setName] = useState(updateRoutine.name);
   const [goal, setGoal] = useState(updateRoutine.goal);
 
