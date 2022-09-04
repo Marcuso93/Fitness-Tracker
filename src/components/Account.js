@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import { apiCall } from '../utilities/api';
+import { loginUser, registerUser } from '../utilities/api';
+import { setTokenInStorage } from '../utilities/utils';
 
 
 const Account = ({ token, setToken, user, setUser }) => {
@@ -12,30 +13,26 @@ const Account = ({ token, setToken, user, setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isRegistered) {
-      const login = await apiCall('users/login', 'POST', null, {username, password});
+      const login = await loginUser(username, password);
       if (login.error) {
         alert(`${login.name}. ${login.message} If you are not an existing user, please register now.`);
       } else if (login.user && login.token){
         setUser(login.user);
-        // setToken(login.token);   // Shouldn't be necessary anymore
-        localStorage.setItem('JWT', JSON.stringify(login.token));
-        const localToken = JSON.parse(localStorage.getItem('JWT'))
-        setToken(localToken);
+        setToken(login.token);
+        setTokenInStorage(login.token);
         resetInputs();
       } else {
         alert('There was an error during login.')
       }
     } else {
       if (password === confirmPassword) {
-        const register = await apiCall('users/register', 'POST', null, {username, password});
+        const register = await registerUser(username, password);
         if (register.error) {
           alert(`${register.name}. ${register.message}`)
         } else if (register.user && register.token) {
           setUser(register.user);
-          // setToken(register.token);    // Shouldn't be necessary anymore
-          localStorage.setItem('JWT', JSON.stringify(register.token));
-          const localToken = JSON.parse(localStorage.getItem('JWT'))
-          setToken(localToken);
+          setToken(register.token);
+          setTokenInStorage(register.token);
           resetInputs();
         } else {
           alert('There was an error during registration.')

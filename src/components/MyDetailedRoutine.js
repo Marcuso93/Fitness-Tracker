@@ -17,7 +17,7 @@ const MyDetailedRoutine = ({
     setMyRoutines, 
     activities, 
     setActivities 
-  }) => {
+}) => {
   const [updateRoutine, setUpdateRoutine] = useState(false);
   const [newRoutineActivity, setNewRoutineActivity] = useState({});
   const [count, setCount] = useState(0);
@@ -169,7 +169,8 @@ const MyDetailedRoutine = ({
         myDetailedRoutine={myDetailedRoutine}
         setMyDetailedRoutine={setMyDetailedRoutine} 
         myRoutines={myRoutines} 
-        setMyRoutines={setMyRoutines} /> :
+        setMyRoutines={setMyRoutines} 
+      /> :
       null
     }
     {
@@ -181,7 +182,8 @@ const MyDetailedRoutine = ({
         setMyDetailedRoutine={setMyDetailedRoutine} 
         setMyRoutines={setMyRoutines}
         user={user}
-        token={token}/> :
+        token={token}
+      /> :
       null
     }
   </div>

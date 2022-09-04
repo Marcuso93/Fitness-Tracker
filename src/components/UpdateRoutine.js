@@ -10,9 +10,8 @@ const UpdateRoutine = ({
     token, 
     myDetailedRoutine, 
     setMyDetailedRoutine,
-    myRoutines, 
     setMyRoutines 
-  }) => {
+}) => {
   const [name, setName] = useState(updateRoutine.name);
   const [goal, setGoal] = useState(updateRoutine.goal);
 
@@ -35,8 +34,6 @@ const UpdateRoutine = ({
       }
       setMyDetailedRoutine(getNewRoutine);
       setMyRoutines(routines);
-      // setMyRoutines([updatedRoutine, ...filterRoutines(myRoutines, updatedRoutine)])
-      // setMyDetailedRoutine(updatedRoutine);
       resetState();
     } else {
       alert('There was an error updating your new routine.')
@@ -48,12 +45,6 @@ const UpdateRoutine = ({
     setGoal('');
     setUpdateRoutine(false);
   }
-
-  // const filterRoutines = (oldRoutines, updatedRoutine) => {
-  //   return oldRoutines.filter((routine) => {
-  //     return routine.id != updatedRoutine.id;
-  //   })
-  // }
 
   if (!user && !token) { return null }  // Reduntant if MyRoutines only appears when logged in?
 

@@ -1,13 +1,12 @@
 import React from 'react';
-
-// TODO: remove token from local storage when you log out
+import { removeTokenFromStorage } from '../utilities/utils';
 
 const Logout = ({ loggingOut, setLoggingOut, setUser, setToken }) => {
   const handleLogout = (event) => {
     event.preventDefault();
     setUser(false);
     setToken('');
-    localStorage.removeItem('JWT');
+    removeTokenFromStorage();
     setLoggingOut(false);
   }
 
