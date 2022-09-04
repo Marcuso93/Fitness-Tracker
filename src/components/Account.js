@@ -17,7 +17,10 @@ const Account = ({ token, setToken, user, setUser }) => {
         alert(`${login.name}. ${login.message} If you are not an existing user, please register now.`);
       } else if (login.user && login.token){
         setUser(login.user);
-        setToken(login.token);
+        // setToken(login.token);   // Shouldn't be necessary anymore
+        localStorage.setItem('JWT', JSON.stringify(login.token));
+        const localToken = JSON.parse(localStorage.getItem('JWT'))
+        setToken(localToken);
         resetInputs();
       } else {
         alert('There was an error during login.')
@@ -29,7 +32,10 @@ const Account = ({ token, setToken, user, setUser }) => {
           alert(`${register.name}. ${register.message}`)
         } else if (register.user && register.token) {
           setUser(register.user);
-          setToken(register.token);
+          // setToken(register.token);    // Shouldn't be necessary anymore
+          localStorage.setItem('JWT', JSON.stringify(register.token));
+          const localToken = JSON.parse(localStorage.getItem('JWT'))
+          setToken(localToken);
           resetInputs();
         } else {
           alert('There was an error during registration.')

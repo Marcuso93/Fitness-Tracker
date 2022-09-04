@@ -1,9 +1,8 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { NavLink, BrowserRouter, Route } from "react-router-dom";
 import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine, MyDetailedRoutine } from './components/index';
-
-// TODO: save JWT in localstorage, check to see if it's saved, make fetch call and setUser
+import { getUser } from "./utilities/api";
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -14,6 +13,25 @@ const App = () => {
   const [detailedRoutine, setDetailedRoutine]= useState([]);
   const [myDetailedRoutine, setMyDetailedRoutine] = useState([]);
   const [loggingOut, setLoggingOut] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const localToken = tokenInStorage()
+      if (localToken) {
+        setToken(localToken);
+        const getLocalUser = await getUser();
+        setUser(getLocalUser);
+      }
+    })()
+    }, [])
+  
+  const tokenInStorage = () => {
+    const localToken = localStorage.getItem('JWT');
+    if (localToken && localToken.length > 0){
+      return localToken
+    } else { return false }
+  }
+
 
   return (
     <main>

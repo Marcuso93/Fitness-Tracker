@@ -29,7 +29,11 @@ const getFetchOptions = (method, body) => {
 }
 
 const setToken = (body, token) => {
-  if (token) { body.headers = Object.assign(body.headers, { 'Authorization': `Bearer ${token}` }) }
+  const localToken = JSON.parse(localStorage.getItem('JWT'));
+  if (localToken) {
+    body.headers = Object.assign(body.headers, { 'Authorization': `Bearer ${localToken}` })
+    return body;
+  } else if (token) { body.headers = Object.assign(body.headers, { 'Authorization': `Bearer ${token}` }) }
   return body;
 }
 
@@ -65,5 +69,10 @@ export const deleteRoutineActivity = async (routineActivityId, token) => {
 
 export const patchRoutineActivity = async (routineActivityId, routineActivityFields, token) => {
   const data = await apiCall(`routine_activities/${routineActivityId}`, "PATCH", token, routineActivityFields)
+  return data || []
+}
+
+export const getUser = async () => {
+  const data = await apiCall(`users/me`, 'GET')
   return data || []
 }
