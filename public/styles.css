@@ -101,15 +101,31 @@ body{
 }
 
 button{
-    font-weight: 16pt;
+    font-weight: 30pt;
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
+    /* color: white; */
+    color: black;
+    border: 1px solid rgb(215, 215, 215);
     margin: .9rem;
-    border-radius: 20px;
-    background-color: rgb(250, 120, 120);
-    box-shadow: 2px 4px 13px 1px rgba(0,0,0,0.43);
+    border-radius: 2em;
+    /* TODO: CHANGE BACKGROUND-COLOR */
+    /* background-color: rgb(250, 120, 120);    */
+    background-color: red;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
     letter-spacing: .15rem;
-    padding: 5px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding: .75em 1.5em;
+    /* padding-left: 30px;
+    padding-right: 30px; */
+}
+button:hover {
+    /* TODO: change background-color */
+    background-color: rgb(179, 0, 0);
+}
+button:focus {
+    outline: none;
+}
+button:active {
+    box-shadow: inset .5px .5px 2px 0px black;
 }
 .login-form{
     gap: 50px;
