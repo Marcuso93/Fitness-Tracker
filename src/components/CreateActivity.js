@@ -40,7 +40,7 @@ const CreateActivity = ({ setIsCreatingActivity, user, token, activities, setAct
         event.preventDefault();
         handleSubmit();
       }}>
-        <h3>Create a New Activity</h3>
+        <h1>Create a New Activity</h1>
         <div>
           <div>Name:</div>
           <input

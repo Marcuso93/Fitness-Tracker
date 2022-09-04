@@ -1,7 +1,6 @@
 input[type=button]{
     all: unset;
 }
-
 nav{
     margin-bottom: 1rem;
     background-color: black;
@@ -13,9 +12,9 @@ nav{
     right: 0%;
     left: 0%;
     padding: .5rem;
-    filter: drop-shadow(1px 1px 1px rgb(59, 59, 59));
+    /* filter: drop-shadow(1px 1px 1px rgb(59, 59, 59)); */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
 }
-
 .navlink, input[type=button] {
     margin-right: 2rem;
     color: rgb(255, 255, 255);
@@ -26,59 +25,81 @@ nav{
     padding: 5px;
     border-radius: 8px;
 }
-
 .navlink.active {
     color: rgb(235, 7, 7);
     font-size: 16pt;
 }
-
 .navlink:hover {
     background-color: rgb(14, 13, 13);
 }
-
 #site-name {
     font-family: 'Bangers', 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
     color: red;
     margin-top: -40px;
 }
+body {
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
+    background-image: url("mainWorkoutBackground.jpg");
+}
+input, textarea {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    border: 1px solid rgb(234, 234, 234);
+    border-radius: 2em;
+    padding: 1em 2em;
+}
+textarea{
 
-.logout-popup {
+}
+.popup-forms{
+    color: white;
+    min-width: 500px;
+    max-width: 75vw;
+}
+.popup-forms, .logout-popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: lightgrey;
-    padding: 50px;
-    border: 1px gray solid;
+    background-color: rgb(78, 77, 77);
+    padding: 1em 0;
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 2em;
 }
-
-.routine-body:hover{
+.logout-popup {
+    color: black;
+    width: 350px;
+}
+.routine-body:hover, .logout-popup{
     background-color: lightgray;
 }
-
 .detailedRoutines{
     position: fixed ;
     background-color:rgb(78, 77, 77);
     color: white;
-    border: 1px solid black;
-    border-radius: 20px;
+    /* border: 1px solid black; */
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 2em;
     padding: 1rem;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    filter: drop-shadow(5px 5px 10px #000);
+    /* filter: drop-shadow(5px 5px 10px #000); */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
     transition: all 1s ease-in-out;
     overflow-y: scroll;
     height: 50%;
     width: 40%;
     animation: publicRoutinesAnimation 1s;
 }
-
 #app{
     margin-top: 4rem;
     display: flex;
 }
-
 body{
     margin-top: 50px;
     text-align: center;
@@ -87,7 +108,6 @@ body{
     font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
     background-image: url("mainWorkoutBackground.jpg");
 }
-
 .login{
     background-color: rgb(78, 77, 77);
     padding: 2rem;
@@ -99,26 +119,21 @@ body{
     display: flex;
     flex-direction: column;
 }
-
 button{
     font-weight: 30pt;
     font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
-    /* color: white; */
     color: black;
-    border: 1px solid rgb(215, 215, 215);
-    margin: .9rem;
+    /* border: 1px solid rgb(215, 215, 215); */
+    border: 1px solid rgb(175, 175, 175);
+    margin: .9rem .5em;
     border-radius: 2em;
-    /* TODO: CHANGE BACKGROUND-COLOR */
-    /* background-color: rgb(250, 120, 120);    */
     background-color: red;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
     letter-spacing: .15rem;
     padding: .75em 1.5em;
-    /* padding-left: 30px;
-    padding-right: 30px; */
+    word-wrap: none;
 }
 button:hover {
-    /* TODO: change background-color */
     background-color: rgb(179, 0, 0);
 }
 button:focus {
@@ -133,11 +148,11 @@ button:active {
     font-size: 15pt;
     color: black;
     background-color: white;
+    border-radius: 2em;
     padding: 2rem;
     padding-left: 10rem;
     padding-right: 10rem;
 }
-
 .text-forground{
     background-color: white;
     padding: 2rem;
@@ -146,30 +161,24 @@ button:active {
     padding-right: 5rem;
     padding-bottom: 5rem;
 }
-
 .public-routines{
     display: flex;
     flex-direction: column;
 }
-
 .routine-body{
     border-bottom: 1px solid black;
     padding:20px
 }
-
 .routine-body:first-of-type{
     border-top: 1px solid black;
     margin-top: 25px;
 }
-
 .routine-body h3{
     margin-top: 0;
 }
-
 .activity-body{
     padding:10px;
 }
-
 @keyframes publicRoutinesAnimation{
     from{
         left: -500px;
@@ -180,49 +189,35 @@ button:active {
         transform: translate(-50%, -50%);
     }
 }
-
-.popup-forms {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* TODO: Add more style / change styles for popup-forms */
-    background-color: lightgrey;
-    padding: 50px;
-    border: 1px gray solid;
-}
-
 .myRoutine:hover{
     background-color: lightgray;
 }
-
 .myRoutine{
     padding: 10px;
 }
-
 .myDetailedRoutine{
     position: fixed ;
     background-color:rgb(78, 77, 77);
     color: white;
-    border: 1px solid black;
-    border-radius: 20px;
+    /* border: 1px solid black; */
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 2em;
     padding: 1rem;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    filter: drop-shadow(5px 5px 10px #000);
+    /* filter: drop-shadow(5px 5px 10px #000); */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
     transition: all 1s ease-in-out;
     animation: publicRoutinesAnimation 1s;
     overflow-y: scroll;
     height: 70%;    
 }
-
 .styleLines{
     border-top: 1px solid white ;
     border-bottom: 1px solid white;
     padding: 10px 0;
 }
-
 .detailedStyleLines{
     border-bottom: 1px solid white;
     padding-bottom: 20px;

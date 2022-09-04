@@ -37,7 +37,7 @@ const CreateRoutine = ({ setIsCreatingRoutine, user, token, myRoutines, setMyRou
         event.preventDefault();
         handleSubmit();
       }}>
-        <h3>Create a New Routine</h3>
+        <h1>Create a New Routine</h1>
         <div>
           <div>Name:</div>
           <input
