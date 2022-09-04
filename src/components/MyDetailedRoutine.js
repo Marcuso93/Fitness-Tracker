@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { deleteMyRoutine, fetchActivities, addRoutineActivity, fetchMyRoutines } from "../utilities/api";
 import { UpdateRoutine, UpdateRoutineActivity } from "./index";
-import { tokenInStorage } from "../utilities/utils";
-import { getUser } from "../utilities/api";
 
-const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, setToken, user, setUser, myRoutines, setMyRoutines, activities, setActivities }) => {
+const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, user, myRoutines, setMyRoutines, activities, setActivities }) => {
   const [updateRoutine, setUpdateRoutine] = useState(false);
   const [newRoutineActivity, setNewRoutineActivity] = useState({});
   const [count, setCount] = useState(0);
@@ -14,49 +12,6 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, set
   const history = useHistory();
 
   useEffect(() => {
-    // const storedToken = tokenInStorage();
-    // if (storedToken) {
-    //   setToken(storedToken);
-    //   const storedUser = await getUser(storedToken);
-    //   // console.log('storedToken storedUser', storedUser);
-    //   setUser(storedUser);
-    //   const getMyRoutines = await fetchMyRoutines(storedUser)
-    //   setMyRoutines(getMyRoutines);
-    // } else if (!storedToken) {
-    //   const getStoredUser = await getUser();
-    //   // console.log('!storedToken getStoredUser', getStoredUser);
-    //   setUser(getStoredUser);
-    //   const getMyRoutines = await fetchMyRoutines(user);
-    //   setMyRoutines(getMyRoutines);
-    // }
-    
-    // Better, but maybe not necessary:
-    // (async () => {
-    //   if (!token) {
-    //     console.log('MyDetailedRoutne: No token, checking storage.')
-    //     const storedToken = tokenInStorage();
-    //     if (storedToken) {
-    //       setToken(storedToken);
-    //       const storedUser = await getUser(storedToken);
-    //       setUser(storedUser);
-    //       const getMyRoutines = await fetchMyRoutines(storedUser);
-    //       setMyRoutines(getMyRoutines);
-    //       console.log('Ran with stored token successfully.')
-    //     } else {
-    //       alert('Please login or register')
-    //     }
-    //   } else {
-    //     const getMyRoutines = await fetchMyRoutines(user);
-    //     setMyRoutines(getMyRoutines);
-    //     console.log('MyDetailedRoutine: Already had token set, didnt need to check local storage. Successful.')
-    //   }
-    //   console.log('Getting activities.')
-    //   const getActivities = await fetchActivities();
-    //   setActivities(getActivities);
-    //   console.log('Successful activities.')
-    // })()
-
-    // FULLY FUNCTIONING TO REVERT BACK TO:
     (async () => {
       const getActivities = await fetchActivities();
       setActivities(getActivities);
@@ -88,25 +43,15 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, set
       {activityId, count, duration}, 
       token
     );
-    // const newActivity = filterActivities(activityId);
-    // const newActivity = {
-    //   id: activityId,
-    //   // name: 
-    //   // description: 
-    // }
     const routines = await fetchMyRoutines(user);
-    const getNewRoutineActivies = () =>{
+    const getNewRoutineActivities = () =>{
       for (let i=0; i<routines.length; i++) {
         if (routines[i].id == myDetailedRoutine.id){
           return routines[i]
         }
       }
     }
-    // const newObj = {
-    //   activities: [newActivity, ...myDetailedRoutine.activities]
-    // }
-    // setMyDetailedRoutine(Object.assign(myDetailedRoutine, newObj))
-    setMyDetailedRoutine(getNewRoutineActivies);
+    setMyDetailedRoutine(getNewRoutineActivities);
     setMyRoutines(routines);
     resetState();
   }

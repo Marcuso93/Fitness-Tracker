@@ -18,23 +18,22 @@ const MyRoutines = ({ user, setUser, token, setToken, setMyDetailedRoutine, myRo
   useEffect(() => {
     (async() => {
       if (!token) {
-        console.log('MyRoutines: No token, checking storage.')
+        console.log('MyRoutines: No token, checking storage.')  // TODO
         const storedToken = tokenInStorage();
         if (storedToken) {
           setToken(storedToken);
           const storedUser = await getUser(storedToken);
-          // console.log('storedToken storedUser', storedUser);
           setUser(storedUser);
           const getMyRoutines = await fetchMyRoutines(storedUser)
           setMyRoutines(getMyRoutines);
-          console.log('Ran with stored token successfully.')
+          console.log('Ran with stored token successfully.')  // TODO
         } else {
           alert('Please login or register.')
         }
       } else {
         const getMyRoutines = await fetchMyRoutines(user);
         setMyRoutines(getMyRoutines);
-        console.log('MyRoutines: Already had token set, didnt need to check storage. Successful.')
+        console.log('MyRoutines: Already had token set, didnt need to check storage. Successful.')  // TODO
       }
     })()
   }, [])

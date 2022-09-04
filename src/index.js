@@ -20,8 +20,8 @@ const App = () => {
       const localToken = tokenInStorage()
       if (localToken) {
         setToken(localToken);
-        const getLocalUser = await getUser();
-        setUser(getLocalUser);
+        const localUser = await getUser();
+        setUser(localUser);
       }
     })()
     }, [])
@@ -108,9 +108,7 @@ const App = () => {
             myDetailedRoutine={myDetailedRoutine} 
             setMyDetailedRoutine={setMyDetailedRoutine} 
             token={token} 
-            setToken={setToken}
             user={user} 
-            setUser={setUser}
             myRoutines={myRoutines} 
             setMyRoutines={setMyRoutines}
             activities={activities}
