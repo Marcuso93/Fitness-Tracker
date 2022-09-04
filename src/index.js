@@ -26,11 +26,14 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const localToken = tokenInStorage()
-      if (localToken) {
-        setToken(localToken);
-        const localUser = await getUser();
-        setUser(localUser);
+      if (!token){
+        const localToken = tokenInStorage()
+        if (localToken) {
+          console.log('Root index checked locaStorage for token, setToken/User.')  // TODO
+          setToken(localToken);
+          const localUser = await getUser();
+          setUser(localUser);
+        }
       }
     })()
     }, [])
