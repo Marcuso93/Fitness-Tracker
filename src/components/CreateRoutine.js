@@ -1,18 +1,19 @@
 import React from 'react'
 import { useState } from 'react'
-import { apiCall } from '../utilities/api'
+import { postRoutine } from '../utilities/api'
 
 const CreateRoutine = ({ setIsCreatingRoutine, user, token, myRoutines, setMyRoutines }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
 
-  const handleSubmit = async () => {
-    const createdRoutine = await apiCall('routines', 'POST', token, { name, goal, isPublic: true })
+  const handleSubmit = async () => {    
+    const createdRoutine = await postRoutine(token, name, goal);
     if (createdRoutine.error) {
       if (createdRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
         alert(`You must create a routine with a unique name.`);
       } else {
-        alert('There was an error in creating your new routine.')
+        alert(`There was an error in creating your new routine. ${createdRoutine.message}`)
+        // alert('There was an error in creating your new routine.')
       }
     } else if (createdRoutine.id) {
       setMyRoutines([createdRoutine, ...myRoutines]);

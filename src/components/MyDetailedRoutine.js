@@ -78,20 +78,18 @@ const MyDetailedRoutine = ({
 
 
   return <div key={myDetailedRoutine.id} className="myDetailedRoutine">
-    <h3>Routine</h3>
-    <div>Name: {myDetailedRoutine.name}</div>
-    <div>Goal: {myDetailedRoutine.goal}</div>
+    <h1>{myDetailedRoutine.name} Routine</h1>
+    <h3>Goal: {myDetailedRoutine.goal}</h3>
     {
       (myDetailedRoutine.activities && myDetailedRoutine.activities.length > 0) ?
       <>
-        <h3 className="styleLines">Routine Activities</h3>
-        <div>Click on an activity to edit or delete it.</div>
+        <h1 className="styleLines">Routine Activities</h1>
         {
           myDetailedRoutine.activities.map((activity) => {
             return (
             <div key={activity.id} className="detailedStyleLines">
               <h3>{activity.name}</h3>
-              <div>{activity.description}</div>
+              <div>{activity.description}</div><br/>
               <div>Count: {activity.count}</div>
               <div>Duration (minutes): {activity.duration}</div>
               <button onClick={(event) => {

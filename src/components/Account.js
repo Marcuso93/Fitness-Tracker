@@ -15,7 +15,7 @@ const Account = ({ token, setToken, user, setUser }) => {
     if (isRegistered) {
       const login = await loginUser(username, password);
       if (login.error) {
-        alert(`${login.name}. ${login.message} If you are not an existing user, please register now.`);
+        alert(`Error: ${login.message}. If you are not an existing user, please register now.`);
       } else if (login.user && login.token){
         setUser(login.user);
         setToken(login.token);
@@ -28,7 +28,7 @@ const Account = ({ token, setToken, user, setUser }) => {
       if (password === confirmPassword) {
         const register = await registerUser(username, password);
         if (register.error) {
-          alert(`${register.name}. ${register.message}`)
+          alert(`Error: ${register.message}.`)
         } else if (register.user && register.token) {
           setUser(register.user);
           setToken(register.token);

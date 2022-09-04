@@ -1,20 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
-import { apiCall } from '../utilities/api'
+import { postActivity } from '../utilities/api'
 
 const CreateActivity = ({ setIsCreatingActivity, user, token, activities, setActivities }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = async () => {
-    for (let i=0; i<activities.length; i++) {
-      if (activities[i].name === name){
-        alert('That activity already exists.');
-        return;
-      }
-    }
-
-    const createdActivity = await apiCall('activities', 'POST', token, { name, description })
+    // TODO: We maybe don't need to bother with this. If there's an activity with the same name,
+    // the API sends back a message saying the activity already exists, and we are using that message in the alert.
+    // for (let i=0; i<activities.length; i++) {
+    //   if (activities[i].name === name){
+    //     alert('That activity already exists.');
+    //     return;
+    //   }
+    // }
+    const createdActivity = await postActivity(token, name, description);
     if (createdActivity.error) {
       alert(`${createdActivity.message}`);
     } else if (createdActivity.id) {

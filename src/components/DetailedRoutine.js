@@ -10,18 +10,17 @@ const DetailedRoutine = ({ detailedRoutine, setDetailedRoutine }) => {
   }
 
   return <div key={detailedRoutine.id} className="detailedRoutines">
-    <h3>Routine</h3>
-    <div>Name: {detailedRoutine.name}</div>
-    <div>Goal: {detailedRoutine.goal}</div>
+    <h1>{detailedRoutine.name} Routine</h1>
+    <h3>Goal: {detailedRoutine.goal}</h3>
     {
       (detailedRoutine.activities && detailedRoutine.activities.length > 0) ?
       <>
-        <h3 className="styleLines">Routine Activities</h3>
+        <h1 className="styleLines">Routine Activities</h1>
         {
           detailedRoutine.activities.map((activity) => {
             return <div key={activity.id} className="detailedStyleLines">
               <h3>{activity.name}</h3>
-              <div>{activity.description}</div>
+              <div>{activity.description}</div><br/>
               <div>Duration: {activity.duration}</div>
               <div>Count: {activity.count}</div>
             </div>

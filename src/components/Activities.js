@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { fetchActivities } from "../utilities/api";
 import CreateActivity from "./CreateActivity";
 
-
 const Activities = ({ activities, setActivities, user, token }) => {
   const [isCreatingActivity, setIsCreatingActivity] = useState(false);
 

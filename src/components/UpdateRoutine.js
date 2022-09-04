@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { apiCall } from '../utilities/api'
+import { patchRoutine } from '../utilities/api'
 import { fetchMyRoutines } from '../utilities/api'
 
 const UpdateRoutine = ({ 
@@ -16,12 +16,13 @@ const UpdateRoutine = ({
   const [goal, setGoal] = useState(updateRoutine.goal);
 
   const handleSubmit = async () => {
-    const updatedRoutine = await apiCall(`routines/${updateRoutine.id}`, 'PATCH', token, { name, goal, isPublic: true })
+    const updatedRoutine = await patchRoutine(updateRoutine.id, token, name, goal);
     if (updatedRoutine.error) {
       if (updatedRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
         alert(`Your routine must have a unique name.`);
       } else {
-        alert('There was an error updating your new routine.')
+        alert(`There wasm an error updating your routine. ${updateRoutine.message}`)
+        // alert('There was an error updating your routine.')
       }
     } else if (updatedRoutine) {
       const routines = await fetchMyRoutines(user);

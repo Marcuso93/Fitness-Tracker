@@ -28,7 +28,7 @@ const PublicRoutines = ({ routines, setRoutines, setDetailedRoutine }) => {
             { 
               routines.map((routine) => {
                 return <div onClick={(e) => { handleRoutineClick(e, routine) }} key={routine.id} className="routine-body">
-                  <div>Name: {routine.name}</div>
+                  <h3>{routine.name}</h3>
                   <div>Goal: {routine.goal}</div>
                   <div>Creator: {routine.creatorName}</div>
                 </div>
