@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { deleteRoutineActivity, patchRoutineActivity, fetchMyRoutines } from "../utilities/api";
 
-const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRoutine, setMyDetailedRoutine, setMyRoutines, user, token}) => {
+const UpdateRoutineActivity = ({
+    updateActivity, 
+    setUpdateActivity, 
+    myDetailedRoutine, 
+    setMyDetailedRoutine, 
+    setMyRoutines, 
+    user, 
+    token
+  }) => {
   const [count, setCount] = useState(updateActivity.count);
   const [duration, setDuration] = useState(updateActivity.duration);  
 

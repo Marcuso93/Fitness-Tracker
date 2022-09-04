@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { deleteMyRoutine, fetchActivities, addRoutineActivity, fetchMyRoutines } from "../utilities/api";
+import { 
+  deleteMyRoutine, 
+  fetchActivities, 
+  addRoutineActivity, 
+  fetchMyRoutines 
+} from "../utilities/api";
 import { UpdateRoutine, UpdateRoutineActivity } from "./index";
 
-const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, user, myRoutines, setMyRoutines, activities, setActivities }) => {
+const MyDetailedRoutine = ({ 
+    myDetailedRoutine, 
+    setMyDetailedRoutine, 
+    token, 
+    user, 
+    myRoutines, 
+    setMyRoutines, 
+    activities, 
+    setActivities 
+  }) => {
   const [updateRoutine, setUpdateRoutine] = useState(false);
   const [newRoutineActivity, setNewRoutineActivity] = useState({});
   const [count, setCount] = useState(0);
@@ -76,12 +90,12 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
     {
       (myDetailedRoutine.activities && myDetailedRoutine.activities.length > 0) ?
       <>
-        <h3>Routine Activities</h3>
+        <h3 className="styleLines">Routine Activities</h3>
         <div>Click on an activity to edit or delete it.</div>
         {
           myDetailedRoutine.activities.map((activity) => {
             return (
-            <div key={activity.id}>
+            <div key={activity.id} className="detailedStyleLines">
               <h3>{activity.name}</h3>
               <div>{activity.description}</div>
               <div>Duration: {activity.duration}</div>

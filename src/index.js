@@ -1,7 +1,16 @@
 import { React, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { NavLink, BrowserRouter, Route } from "react-router-dom";
-import { Account, Activities, Home, MyRoutines, PublicRoutines, Logout, DetailedRoutine, MyDetailedRoutine } from './components/index';
+import { 
+  Account, 
+  Activities, 
+  Home, 
+  MyRoutines, 
+  PublicRoutines, 
+  Logout, 
+  DetailedRoutine, 
+  MyDetailedRoutine 
+} from './components/index';
 import { getUser } from "./utilities/api";
 
 const App = () => {
@@ -80,7 +89,12 @@ const App = () => {
 
       <Route exact path='/'>
         {/* to account page to login/register maybe */}
-        <Account token={token} setToken={setToken} user={user} setUser={setUser} />
+        <Account 
+          token={token} 
+          setToken={setToken} 
+          user={user} 
+          setUser={setUser} 
+        />
       </Route>
 
       <Route path="/home">
@@ -95,7 +109,10 @@ const App = () => {
           setDetailedRoutine={setDetailedRoutine}
         />
         <Route path= "/public-routines/:routineId">
-          <DetailedRoutine detailedRoutine={detailedRoutine} setDetailedRoutine={setDetailedRoutine} />          
+          <DetailedRoutine 
+            detailedRoutine={detailedRoutine} 
+            setDetailedRoutine={setDetailedRoutine} 
+          />          
         </Route>
       </Route>
 
@@ -123,15 +140,29 @@ const App = () => {
       </Route>
       
       <Route path="/activities">
-        <Activities activities={activities} setActivities={setActivities} user={user} token={token} />
+        <Activities 
+          activities={activities} 
+          setActivities={setActivities} 
+          user={user} 
+          token={token} 
+        />
       </Route>
 
       <Route path="/account">
-        <Account token={token} setToken={setToken} user={user} setUser={setUser} />
+        <Account 
+          token={token} 
+          setToken={setToken} 
+          user={user} 
+          setUser={setUser} 
+        />
       </Route>
 
-      <Logout loggingOut={loggingOut} setLoggingOut={setLoggingOut} setUser={setUser} setToken={setToken} />
-    
+      <Logout 
+        loggingOut={loggingOut} 
+        setLoggingOut={setLoggingOut} 
+        setUser={setUser} 
+        setToken={setToken} 
+      />    
     </main>
   )
 }
