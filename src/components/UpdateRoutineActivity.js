@@ -11,14 +11,14 @@ const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRou
             alert(`There was an error updating your routine activity`);
         } else if (patched) {
             const routines = await fetchMyRoutines(user);
-            const getNewRoutineActivies = () => {
+            const getNewRoutines = () => {
                 for (let i = 0; i < routines.length; i++) {
                     if (routines[i].id == myDetailedRoutine.id) {
                         return routines[i]
                     }
                 }
             }
-            setMyDetailedRoutine(getNewRoutineActivies);
+            setMyDetailedRoutine(getNewRoutines);
             setMyRoutines(routines);
             resetState();
         } else {

@@ -158,6 +158,7 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         setUpdateRoutine={setUpdateRoutine} 
         user={user} 
         token={token} 
+        myDetailedRoutine={myDetailedRoutine}
         setMyDetailedRoutine={setMyDetailedRoutine} 
         myRoutines={myRoutines} 
         setMyRoutines={setMyRoutines} /> :
