@@ -14,7 +14,7 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
   useEffect(() => {
     (async () => {
       const getActivities = await fetchActivities();
-      setActivities(getActivities)
+      setActivities(getActivities);
     })()
   }, [])
 
@@ -33,31 +33,25 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
   }
 
   const handleRoutineActivitySubmit = async () => {
+    if (count < 0 || duration < 0) {
+      alert('Count and duration must be greater than or equal to zero.')
+      return
+    }
     const activityId = newRoutineActivity;
     await addRoutineActivity(
       myDetailedRoutine.id, 
       {activityId, count, duration}, 
       token
     );
-    // const newActivity = filterActivities(activityId);
-    // const newActivity = {
-    //   id: activityId,
-    //   // name: 
-    //   // description: 
-    // }
     const routines = await fetchMyRoutines(user);
-    const getNewRoutineActivies = () =>{
+    const getNewRoutineActivities = () =>{
       for (let i=0; i<routines.length; i++) {
         if (routines[i].id == myDetailedRoutine.id){
           return routines[i]
         }
       }
     }
-    // const newObj = {
-    //   activities: [newActivity, ...myDetailedRoutine.activities]
-    // }
-    // setMyDetailedRoutine(Object.assign(myDetailedRoutine, newObj))
-    setMyDetailedRoutine(getNewRoutineActivies);
+    setMyDetailedRoutine(getNewRoutineActivities);
     setMyRoutines(routines);
     resetState();
   }
@@ -84,8 +78,8 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
             <div key={activity.id}>
               <h3>{activity.name}</h3>
               <div>{activity.description}</div>
-              <div>Duration: {activity.duration}</div>
               <div>Count: {activity.count}</div>
+              <div>Duration (minutes): {activity.duration}</div>
               <button onClick={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
@@ -123,7 +117,7 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         <div>Count:</div>
         <input
           required
-          type='text'
+          type='number'
           name='count'
           placeholder='Count Required'
           value={count}
@@ -131,10 +125,10 @@ const MyDetailedRoutine = ({ myDetailedRoutine, setMyDetailedRoutine, token, use
         />
       </div>
       <div>
-        <div>Duration:</div>
+        <div>Duration (in minutes):</div>
         <input
           required
-          type='text'
+          type='number'
           name='duration'
           placeholder='Duration Required'
           value={duration}

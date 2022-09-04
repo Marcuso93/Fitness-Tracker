@@ -6,6 +6,10 @@ const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRou
   const [duration, setDuration] = useState(updateActivity.duration);  
 
     const handleSubmit = async () => {
+        if (count < 0 || duration < 0) {
+            alert('Count and duration must be greater than or equal to zero.')
+            return
+        }
         const patched = await patchRoutineActivity(updateActivity.routineActivityId, {count, duration}, token)
         if (patched.error) {
             alert(`There was an error updating your routine activity`);
@@ -66,7 +70,7 @@ const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRou
                     <div>Count:</div>
                     <input
                         required
-                        type='text'
+                        type='number'
                         name='count'
                         placeholder='Count Required'
                         value={count}
@@ -74,10 +78,10 @@ const UpdateRoutineActivity = ({updateActivity, setUpdateActivity, myDetailedRou
                     />
                 </div>
                 <div>
-                    <div>Duration:</div>
+                    <div>Duration (in minutes):</div>
                     <input
                         required
-                        type='text'
+                        type='number'
                         name='duration'
                         placeholder='Duration Required'
                         value={duration}

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { CreateRoutine } from ".";
 import { fetchMyRoutines } from "../utilities/api.js"
 import { useHistory } from "react-router-dom";
+import { tokenInStorage } from "../utilities/utils";
+import { getUser } from "../utilities/api.js";
 
-const MyRoutines = ({ user, token, setMyDetailedRoutine, myRoutines, setMyRoutines }) => {
+const MyRoutines = ({ user, setUser, token, setToken, setMyDetailedRoutine, myRoutines, setMyRoutines }) => {
   const [isCreatingRoutine, setIsCreatingRoutine] = useState(false);
   const history = useHistory();
 
@@ -14,11 +16,27 @@ const MyRoutines = ({ user, token, setMyDetailedRoutine, myRoutines, setMyRoutin
   }
 
   useEffect(() => {
-    (async () => {
+    (async() => {
+      if (!token) {
+        console.log('MyRoutines: No token, checking storage.')  // TODO
+        const storedToken = tokenInStorage();
+        if (storedToken) {
+          setToken(storedToken);
+          const storedUser = await getUser(storedToken);
+          setUser(storedUser);
+          const getMyRoutines = await fetchMyRoutines(storedUser)
+          setMyRoutines(getMyRoutines);
+          console.log('Ran with stored token successfully.')  // TODO
+        } else {
+          alert('Please login or register.')
+        }
+      } else {
         const getMyRoutines = await fetchMyRoutines(user);
         setMyRoutines(getMyRoutines);
+        console.log('MyRoutines: Already had token set, didnt need to check storage. Successful.')  // TODO
+      }
     })()
-    }, [])
+  }, [])
 
   return (
     <div className="text-forground">
