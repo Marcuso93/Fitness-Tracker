@@ -12,7 +12,6 @@ nav{
     right: 0%;
     left: 0%;
     padding: .5rem;
-    /* filter: drop-shadow(1px 1px 1px rgb(59, 59, 59)); */
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
 }
 .navlink, input[type=button] {
@@ -39,6 +38,7 @@ nav{
 }
 body {
     margin-top: 50px;
+    width: 100vw;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -52,23 +52,21 @@ input, textarea {
     border-radius: 2em;
     padding: 1em 2em;
 }
-/* textarea{
-
-} */
-.popup-forms{
-    color: white;
-    min-width: 500px;
-    max-width: 75vw;
-}
 .popup-forms, .logout-popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(78, 77, 77);
     padding: 1em 0;
     border: 1px solid rgb(175, 175, 175);
     border-radius: 2em;
+    animation: publicRoutinesAnimation 1s;
+}
+.popup-forms{
+    color: white;
+    min-width: 500px;
+    max-width: 75vw;
+    background-color: rgb(78, 77, 77);
 }
 .logout-popup {
     color: black;
@@ -81,14 +79,12 @@ input, textarea {
     position: fixed ;
     background-color:rgb(78, 77, 77);
     color: white;
-    /* border: 1px solid black; */
     border: 1px solid rgb(175, 175, 175);
     border-radius: 2em;
     padding: 1rem;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    /* filter: drop-shadow(5px 5px 10px #000); */
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
     transition: all 1s ease-in-out;
     overflow-y: scroll;
@@ -110,20 +106,19 @@ body{
 }
 .login{
     background-color: rgb(78, 77, 77);
-    padding: 2rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
-    padding-bottom: 5rem;
+    padding: 0rem 1em 2em 1em;
     color:white;
     letter-spacing: .2rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 450px;
+    max-width: 95vw;
 }
 button{
     font-weight: 30pt;
     font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
     color: black;
-    /* border: 1px solid rgb(215, 215, 215); */
     border: 1px solid rgb(175, 175, 175);
     margin: .9rem .5em;
     border-radius: 2em;
@@ -149,9 +144,10 @@ button:active {
     color: black;
     background-color: white;
     border-radius: 2em;
-    padding: 2rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
+    min-width: 300px;
+    padding: 1em 2em;
+    max-width: 85vw;
+    justify-items: center;
 }
 .text-forground{
     background-color: white;
@@ -199,14 +195,12 @@ button:active {
     position: fixed ;
     background-color:rgb(78, 77, 77);
     color: white;
-    /* border: 1px solid black; */
     border: 1px solid rgb(175, 175, 175);
     border-radius: 2em;
     padding: 1rem;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    /* filter: drop-shadow(5px 5px 10px #000); */
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
     transition: all 1s ease-in-out;
     animation: publicRoutinesAnimation 1s;
@@ -224,4 +218,8 @@ button:active {
 }
 h1 {
     color: red;
-    font-family: 'Bangers', 'Bebas Neue', 'Gill Sans', Arial, Helvetica, sans-serif;}
+    font-family: 'Bangers', 'Bebas Neue', 'Gill Sans', Arial, Helvetica, sans-serif;
+}
+.login-or-register{
+    margin-bottom: 0;
+}

@@ -17,14 +17,12 @@ const Activities = ({ activities, setActivities, user, token }) => {
       <h1>Public Activities</h1>
       {
         (user && token) ?
-        <>
-          <button
-            type='submit'
-            onClick={(event) => {
-              event.preventDefault();
-              setIsCreatingActivity(true);
-            }}>Create New Activity</button>
-        </> :
+        <button
+          type='submit'
+          onClick={(event) => {
+            event.preventDefault();
+            setIsCreatingActivity(true);
+          }}>Create New Activity</button> :
         <h3>Login or register to create new activities.</h3>
       }
       <div>
@@ -43,14 +41,14 @@ const Activities = ({ activities, setActivities, user, token }) => {
       </div>
       {
         (isCreatingActivity && user && token) ?
-          <CreateActivity 
-            setIsCreatingActivity={setIsCreatingActivity} 
-            user={user}
-            token={token}
-            activities={activities} 
-            setActivities={setActivities} 
-          /> :
-          null
+        <CreateActivity 
+          setIsCreatingActivity={setIsCreatingActivity} 
+          user={user}
+          token={token}
+          activities={activities} 
+          setActivities={setActivities} 
+        /> :
+        null
       }
     </div>
   )

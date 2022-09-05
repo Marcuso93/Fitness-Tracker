@@ -13,7 +13,6 @@ const CreateRoutine = ({ setIsCreatingRoutine, user, token, myRoutines, setMyRou
         alert(`You must create a routine with a unique name.`);
       } else {
         alert(`There was an error in creating your new routine. ${createdRoutine.message}`)
-        // alert('There was an error in creating your new routine.')
       }
     } else if (createdRoutine.id) {
       setMyRoutines([createdRoutine, ...myRoutines]);
@@ -29,7 +28,7 @@ const CreateRoutine = ({ setIsCreatingRoutine, user, token, myRoutines, setMyRou
     setIsCreatingRoutine(false);
   }
 
-  if (!user && !token) { return null }  // Reduntant if MyRoutines only appears when logged in?
+  if (!user && !token) { return null }
 
   return (
     <div className='popup-forms'>

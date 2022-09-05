@@ -17,15 +17,13 @@ const Logout = ({ loggingOut, setLoggingOut, setUser, setToken }) => {
 
   return (
     loggingOut ?
-    <>
-      <div className='logout-popup' style={{zIndex: '4'}}>
-        <form>
-          <h1>Are you sure?</h1>
-          <button onClick={ handleLogout }>Logout</button>
-          <button onClick={ handleCancel }>Cancel</button>
-        </form>
-      </div>
-    </> :
+    <div className='logout-popup' style={{zIndex: '4'}}>
+      <form>
+        <h1>Are you sure?</h1>
+        <button onClick={ handleLogout }>Logout</button>
+        <button onClick={ handleCancel }>Cancel</button>
+      </form>
+    </div> :
     null
   )
 }

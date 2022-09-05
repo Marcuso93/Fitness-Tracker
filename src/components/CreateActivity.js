@@ -7,14 +7,6 @@ const CreateActivity = ({ setIsCreatingActivity, user, token, activities, setAct
   const [description, setDescription] = useState('');
 
   const handleSubmit = async () => {
-    // TODO: We maybe don't need to bother with this. If there's an activity with the same name,
-    // the API sends back a message saying the activity already exists, and we are using that message in the alert.
-    // for (let i=0; i<activities.length; i++) {
-    //   if (activities[i].name === name){
-    //     alert('That activity already exists.');
-    //     return;
-    //   }
-    // }
     const createdActivity = await postActivity(token, name, description);
     if (createdActivity.error) {
       alert(`${createdActivity.message}`);

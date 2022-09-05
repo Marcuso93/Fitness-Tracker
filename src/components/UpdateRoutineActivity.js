@@ -34,7 +34,7 @@ const UpdateRoutineActivity = ({
       setMyRoutines(routines);
       resetState();
     } else {
-      alert('There was an error updating your routine activity.')
+      alert('There was an error updating your routine activity.');
     }
   }
 
@@ -65,7 +65,7 @@ const UpdateRoutineActivity = ({
     })
   }
 
-  if (!user && !token) { return null }  // Reduntant if MyRoutines only appears when logged in?
+  if (!user && !token) { return null }
 
   return (
     <div className='popup-forms'>

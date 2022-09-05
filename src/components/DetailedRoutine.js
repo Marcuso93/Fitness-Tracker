@@ -20,7 +20,7 @@ const DetailedRoutine = ({ detailedRoutine, setDetailedRoutine }) => {
           detailedRoutine.activities.map((activity) => {
             return <div key={activity.id} className="detailedStyleLines">
               <h3>{activity.name}</h3>
-              <div>{activity.description}</div><br/>
+              <div>Description: {activity.description}</div><br/>
               <div>Duration: {activity.duration}</div>
               <div>Count: {activity.count}</div>
             </div>

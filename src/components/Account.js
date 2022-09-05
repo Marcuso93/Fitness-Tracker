@@ -57,10 +57,10 @@ const Account = ({ token, setToken, user, setUser }) => {
       {
         (user && token) ?
         <>
-          <h3>User Profile</h3>
-          {/* TODO: Add whatever info we want to show here if user is logged in */}
+          <h2>User Profile</h2>
           <p>You are logged in as { user.username }.</p>
-          <p>Add whatever information/instructions we want.</p>
+          <p>To see the routines you have created or create a new routine, visit the My Routines tab.</p>
+          <p>Feel free to browse Public Routines and Activities to get some ideas for your own fitness journey!</p>
         </> :
         <>
           <form className = 'login-form'onSubmit={ handleSubmit } >
@@ -85,7 +85,8 @@ const Account = ({ token, setToken, user, setUser }) => {
                 value={ password }
                 onChange={ (event) => { setPassword(event.target.value) }}/>
             </div>
-            { !isRegistered ?
+            { 
+              !isRegistered ?
               <div>
                 <div>Confirm Password:</div>
                 <input
@@ -112,7 +113,7 @@ const Account = ({ token, setToken, user, setUser }) => {
             {
               isRegistered ?
               <>
-                <p>New to Fitness Trac.kr?</p>
+                <p className='login-or-register'>New to Fitness Trac.kr?</p>
                 <button 
                   type='submit'
                   onClick={(event) => {
@@ -121,7 +122,7 @@ const Account = ({ token, setToken, user, setUser }) => {
                 }}>Register New User</button>
               </> :
               <>
-                <p>Already a Fitness Trac.kr user?</p>
+                <p className='login-or-register'>Already a Fitness Trac.kr user?</p>
                 <button
                   type='submit'
                   onClick={(event) => {

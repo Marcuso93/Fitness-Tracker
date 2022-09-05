@@ -21,8 +21,7 @@ const UpdateRoutine = ({
       if (updatedRoutine.error === 'duplicate key value violates unique constraint "routines_name_key"') {
         alert(`Your routine must have a unique name.`);
       } else {
-        alert(`There wasm an error updating your routine. ${updateRoutine.message}`)
-        // alert('There was an error updating your routine.')
+        alert(`There wasm an error updating your routine. ${updateRoutine.message}`);
       }
     } else if (updatedRoutine) {
       const routines = await fetchMyRoutines(user);
@@ -37,7 +36,7 @@ const UpdateRoutine = ({
       setMyRoutines(routines);
       resetState();
     } else {
-      alert('There was an error updating your new routine.')
+      alert('There was an error updating your new routine.');
     }
   }
 
@@ -47,7 +46,7 @@ const UpdateRoutine = ({
     setUpdateRoutine(false);
   }
 
-  if (!user && !token) { return null }  // Reduntant if MyRoutines only appears when logged in?
+  if (!user && !token) { return null }
 
   return (
     <div className='popup-forms'>

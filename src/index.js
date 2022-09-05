@@ -29,7 +29,7 @@ const App = () => {
       if (!token){
         const localToken = findTokenInStorage()
         if (localToken) {
-          console.log('Root index checked locaStorage for token, setToken/User.')  // TODO
+          console.log('Root index checked locaStorage for token, setToken/User.');
           setToken(localToken);
           const localUser = await getUser();
           setUser(localUser);
@@ -84,12 +84,11 @@ const App = () => {
       <h1 id="site-name">Fitness Trac.kr</h1>
 
       <Route exact path='/'>
-        {/* to account page to login/register maybe */}
-        <Account token={token} setToken={setToken} user={user} setUser={setUser} />
+        <Home token={token} user={user} />
       </Route>
 
       <Route path="/home">
-        <Home />
+        <Home token={token} user={user} />
       </Route>
 
       <Route path="/public-routines">

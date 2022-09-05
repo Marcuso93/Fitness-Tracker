@@ -18,22 +18,22 @@ const MyRoutines = ({ user, setUser, token, setToken, setMyDetailedRoutine, myRo
   useEffect(() => {
     (async() => {
       if (!token) {
-        console.log('MyRoutines: No token, checking storage.')  // TODO
+        console.log('MyRoutines: No token, checking storage.');
         const storedToken = findTokenInStorage();
         if (storedToken) {
           setToken(storedToken);
           const storedUser = await getUser(storedToken);
           setUser(storedUser);
-          const getMyRoutines = await fetchMyRoutines(storedUser)
+          const getMyRoutines = await fetchMyRoutines(storedUser);
           setMyRoutines(getMyRoutines);
-          console.log('Ran with stored token successfully.')  // TODO
+          console.log('Ran with stored token successfully.');
         } else {
-          alert('Please login or register.')
+          alert('Please login or register.');
         }
       } else {
         const getMyRoutines = await fetchMyRoutines(user);
         setMyRoutines(getMyRoutines);
-        console.log('MyRoutines: Already had token set, didnt need to check storage. Successful.')  // TODO
+        console.log('MyRoutines: Already had token set, didnt need to check storage. Successful.');
       }
     })()
   }, [])
@@ -45,6 +45,7 @@ const MyRoutines = ({ user, setUser, token, setToken, setMyDetailedRoutine, myRo
         (user && token) ?
         <>
           <h3>Select a routine to see and edit routine information and activities.</h3>
+          <p>Visit the Activities tab to browse or create activities to add to your routines.</p> 
           <button
             type='submit'
             onClick={(event) => {

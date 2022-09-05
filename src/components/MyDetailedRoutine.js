@@ -39,11 +39,12 @@ const MyDetailedRoutine = ({
 
   const handleDeleteRoutine = async (e, Id) => {
     e.stopPropagation()
-    if (window.confirm("Are you sure you want to delete your routine?"))
-    deleteMyRoutine(token, Id);
-    const filteredRoutines = myRoutines.filter(routine => routine.id != Id)
-    setMyRoutines(filteredRoutines);
-    history.push(`/my-routines/`);
+    if (window.confirm("Are you sure you want to delete your routine?")){
+      deleteMyRoutine(token, Id);
+      const filteredRoutines = myRoutines.filter(routine => routine.id != Id)
+      setMyRoutines(filteredRoutines);
+      history.push(`/my-routines/`);
+    }
   }
 
   const handleRoutineActivitySubmit = async () => {
@@ -76,10 +77,15 @@ const MyDetailedRoutine = ({
     setDuration(0);
   }
 
-
   return <div key={myDetailedRoutine.id} className="myDetailedRoutine">
     <h1>{myDetailedRoutine.name} Routine</h1>
     <h3>Goal: {myDetailedRoutine.goal}</h3>
+    <button
+      onClick={(event) => {
+        event.preventDefault();
+        setUpdateRoutine(myDetailedRoutine);
+      }}
+    >Update Routine</button>
     {
       (myDetailedRoutine.activities && myDetailedRoutine.activities.length > 0) ?
       <>
@@ -89,15 +95,17 @@ const MyDetailedRoutine = ({
             return (
             <div key={activity.id} className="detailedStyleLines">
               <h3>{activity.name}</h3>
-              <div>{activity.description}</div><br/>
+              <div>Description: {activity.description}</div><br/>
               <div>Count: {activity.count}</div>
               <div>Duration (minutes): {activity.duration}</div>
               <button onClick={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
                 setUpdateActivity(activity);
-              }
-              }>Edit Activity</button>
+              }}>{ (updateActivity && updateActivity.id === activity.id) ? 
+                  'Edit Above ^^' : 
+                  'Edit Acitivity'
+              }</button>
             </div>
           )})
         }
@@ -149,13 +157,7 @@ const MyDetailedRoutine = ({
         </div>
         <button type='submit'>Add Activity</button>
     </form>
-    <button
-      onClick={(event) => {
-        event.preventDefault();
-        setUpdateRoutine(myDetailedRoutine);
-      }}
-    >Update Routine</button>
-    <button onClick={(e) => { handleDeleteRoutine(e, myDetailedRoutine.id) }}>Delete</button>
+    <button onClick={(e) => { handleDeleteRoutine(e, myDetailedRoutine.id) }}>Delete Routine</button>
     <button onClick={handleClose} >Close</button>
     {
       updateRoutine ?
